@@ -1,13 +1,19 @@
-# Plano de integração com Codex
+# Tarefas para Codex
 
-PR 1: executar scripts/import-studybuddy.sh em checkout limpo; preservar licença e autoria; validar npm ci, typecheck, lint, testes e build. O script prebuild do upstream pode migrar banco: NÃO executar com banco de produção.
+## Primeiro: validar a base importada
+1. Executar `npm ci` (downloads binários com checksums via postinstall).
+2. Validar versão Node 20+, Postgres com pgvector, autenticação e permissões.
+3. Executar `npm run typecheck`, `npm run lint`, `npm test` e `npm run dev` e documentar falhas.
+4. Não executar `npm run build` com banco real sem revisar migrador em prebuild.
+5. Verificar aplicação web antes de alterar UX.
 
-PR 2: adicionar exames, pesos, matérias e tópicos brasileiros; substituir taxonomia SAT/Competition Math sem destruir dados.
+## Depois: módulos exclusivos (incrementais)
+- Nova Questão: texto, alternativas, gabarito, resposta marcada, imagem opcional.
+- Concurso/edital/tópico com pesos e distinção entre conteúdo oficial e hipotético.
+- Banco de conceitos e pegadinhas; cadernos como *visões* únicas de dados.
+- Editor BlockNote integrado, respostas corretas, lei seca, padrões de banca.
+- Geração de flashcards por IA com aprovação e FSRS integrado.
+- Estatísticas determinísticas e prioridade calculada por ganho de pontos, desempenho, prazo e incerteza.
+- Testes de isolamento por conta, deduplicação, referenciamento de fontes e limites de custos da IA.
 
-PR 3: criar formulário rápido de questões, gabarito e resposta do aluno. Construir pipeline IA JSON com evidências.
-
-PR 4: implementar banco de conceitos, pegadinhas, lei seca, editor BlockNote, flashcards com FSRS e revisão.
-
-PR 5: dashboard de estatísticas por edital, confiança da amostra e cálculo determinístico de prioridade.
-
-Critérios de aceite: isolamento por usuário, rastreabilidade, deduplicação, segurança de API keys, testes automatizados e respeito a licenças.
+Não inventar dados estatísticos nem citações legais. Não expor chaves no cliente. Método apenas questões + flashcards.
