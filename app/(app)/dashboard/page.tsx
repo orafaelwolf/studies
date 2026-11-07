@@ -151,14 +151,14 @@ export default async function DashboardPage() {
           </h1>
         </div>
         <div className="flex flex-col gap-2">
-          <Link href="/upload" className="btn btn-primary sm:w-auto sm:px-5">
-            Try a sample worksheet
+          <Link href="/nova-questao" className="btn btn-primary sm:w-auto sm:px-5">
+            Cadastrar questão
           </Link>
           <Link
             href="/upload#add-heading"
             className="hint text-center hover:text-fg"
           >
-            or upload your own
+            ou enviar caderno em PDF
           </Link>
         </div>
       </div>
