@@ -1,0 +1,1706 @@
+{
+  "id": "pomerode-2026",
+  "nome": "Assistente Legislativo — Câmara Municipal de Pomerode",
+  "sigla": "Pomerode",
+  "situacao": "edital_publicado",
+  "banca": "FURB",
+  "edital": "001/2026",
+  "prova": "2026-12-13",
+  "questoes": 60,
+  "pontos": 10,
+  "fontes": {
+    "arquivo": "Pomerode_2026_Assistente_Legislativo_verticalizado_CORRIGIDO.xlsx",
+    "pdf": "Pomerode_2026_Assistente_Legislativo_verticalizado_CORRIGIDO.pdf",
+    "edital": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf",
+    "portal": "https://concursos.furb.br/informacoes/578/"
+  },
+  "nota": "Conteúdos verticalizados da planilha corrigida. Prioridade é sugestão, não incidência oficial.",
+  "disciplinas": [
+    {
+      "disciplina": "Conhecimentos Específicos",
+      "questoes": 25,
+      "pontos": 5,
+      "topicos": 94
+    },
+    {
+      "disciplina": "Língua Portuguesa",
+      "questoes": 10,
+      "pontos": 1.5,
+      "topicos": 39
+    },
+    {
+      "disciplina": "Informática",
+      "questoes": 10,
+      "pontos": 1.5,
+      "topicos": 21
+    },
+    {
+      "disciplina": "Legislação Municipal",
+      "questoes": 5,
+      "pontos": 0.75,
+      "topicos": 5
+    },
+    {
+      "disciplina": "Raciocínio Lógico",
+      "questoes": 5,
+      "pontos": 0.75,
+      "topicos": 31
+    },
+    {
+      "disciplina": "Conhecimentos Gerais",
+      "questoes": 5,
+      "pontos": 0.5,
+      "topicos": 16
+    }
+  ],
+  "topicos": [
+    {
+      "id": 1,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Textos e interpretação",
+      "topico": "Compreensão de textos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 2,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Textos e interpretação",
+      "topico": "Análise de textos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 3,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Textos e interpretação",
+      "topico": "Interpretação de textos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 4,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Textos e interpretação",
+      "topico": "Gêneros textuais: identificação, função e uso social",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 5,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Textos e interpretação",
+      "topico": "Tipos textuais e gêneros textuais",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 6,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Textos e interpretação",
+      "topico": "Funções da linguagem",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 7,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Textos e interpretação",
+      "topico": "Figuras de linguagem",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 8,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Textos e interpretação",
+      "topico": "Coesão textual e construção de sentidos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 9,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Norma culta",
+      "topico": "Ortografia",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 10,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Norma culta",
+      "topico": "Pontuação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 11,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Norma culta",
+      "topico": "Acentuação gráfica",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 12,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Norma culta",
+      "topico": "Estrutura e formação de palavras: derivação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 13,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Norma culta",
+      "topico": "Estrutura e formação de palavras: composição",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 14,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Morfologia",
+      "topico": "Substantivo",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 15,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Morfologia",
+      "topico": "Artigo",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 16,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Morfologia",
+      "topico": "Adjetivo",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 17,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Morfologia",
+      "topico": "Pronome",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 18,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Morfologia",
+      "topico": "Numeral",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 19,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Morfologia",
+      "topico": "Verbo",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 20,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Morfologia",
+      "topico": "Advérbio",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 21,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Morfologia",
+      "topico": "Preposição",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 22,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Morfologia",
+      "topico": "Conjunção",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 23,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Morfologia",
+      "topico": "Interjeição",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 24,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Colocação pronominal",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 25,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Regência nominal",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 26,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Regência verbal",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 27,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Emprego dos tempos verbais",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 28,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Crase",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 29,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Concordância nominal",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 30,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Concordância verbal",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 31,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Análise sintática do período simples",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 32,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Análise sintática do período composto",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 33,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Coordenação: processos e valores semânticos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 34,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Subordinação: processos e valores semânticos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 35,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Sentido conotativo e denotativo",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 36,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Sentido dos vocábulos no texto",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 37,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Sinônimos e antônimos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 38,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Hipônimos e hiperônimos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 39,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Sintaxe e semântica",
+      "topico": "Uso dos porquês",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 40,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética e geometria",
+      "topico": "Problemas aritméticos e geométricos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 41,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética e geometria",
+      "topico": "Números inteiros",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 42,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética e geometria",
+      "topico": "Números racionais: decimal e fração",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 43,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética e geometria",
+      "topico": "Adição, subtração, multiplicação e divisão",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 44,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética e geometria",
+      "topico": "Potenciação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 45,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética e geometria",
+      "topico": "Razões e proporções",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 46,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética e geometria",
+      "topico": "Divisão em partes proporcionais",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 47,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética e geometria",
+      "topico": "Regra de três simples",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 48,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética e geometria",
+      "topico": "Regra de três composta",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 49,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética e geometria",
+      "topico": "Porcentagem",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 50,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Outros problemas",
+      "topico": "Princípios de contagem",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 51,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Outros problemas",
+      "topico": "Probabilidade",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 52,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Outros problemas",
+      "topico": "Operações com conjuntos",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 53,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Outros problemas",
+      "topico": "Medidas de tempo",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 54,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Outros problemas",
+      "topico": "Medidas de comprimento",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 55,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Outros problemas",
+      "topico": "Medidas de área",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 56,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Outros problemas",
+      "topico": "Medidas de volume",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 57,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Outros problemas",
+      "topico": "Sequências e padrões lógicos",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 58,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Outros problemas",
+      "topico": "Interpretação de gráficos e tabelas",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 59,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Outros problemas",
+      "topico": "Resolução de situações-problema",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 60,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Proposições, relações e inferências",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 61,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Estruturas lógicas",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 62,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Lógica de argumentação: analogias e inferências",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 63,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Lógica de argumentação: deduções e conclusões",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 64,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Lógica sentencial/proposicional",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 65,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Proposições simples e compostas",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 66,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Tabelas-verdade",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 67,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Equivalências lógicas",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 68,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Leis de Morgan",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 69,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Diagramas lógicos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 70,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Lógica de primeira ordem",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 71,
+      "disciplina": "Informática",
+      "eixo": "Fundamentos",
+      "topico": "Conceitos básicos de informática",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 72,
+      "disciplina": "Informática",
+      "eixo": "Fundamentos",
+      "topico": "Sistemas operacionais",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 73,
+      "disciplina": "Informática",
+      "eixo": "Fundamentos",
+      "topico": "Arquivos, pastas e diretórios",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 74,
+      "disciplina": "Informática",
+      "eixo": "Produtividade",
+      "topico": "Editores de texto: criação e edição",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 75,
+      "disciplina": "Informática",
+      "eixo": "Produtividade",
+      "topico": "Editores de texto: formatação e revisão",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 76,
+      "disciplina": "Informática",
+      "eixo": "Produtividade",
+      "topico": "Editores de texto: impressão",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 77,
+      "disciplina": "Informática",
+      "eixo": "Produtividade",
+      "topico": "Planilhas eletrônicas: criação e edição",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 78,
+      "disciplina": "Informática",
+      "eixo": "Produtividade",
+      "topico": "Planilhas: formatação, classificação e filtros",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 79,
+      "disciplina": "Informática",
+      "eixo": "Produtividade",
+      "topico": "Planilhas: fórmulas e funções básicas",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 80,
+      "disciplina": "Informática",
+      "eixo": "Produtividade",
+      "topico": "Planilhas: gráficos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 81,
+      "disciplina": "Informática",
+      "eixo": "Internet e documentos",
+      "topico": "Correio eletrônico",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 82,
+      "disciplina": "Informática",
+      "eixo": "Internet e documentos",
+      "topico": "Internet e navegadores",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 83,
+      "disciplina": "Informática",
+      "eixo": "Internet e documentos",
+      "topico": "Armazenamento e compartilhamento de arquivos em nuvem",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 84,
+      "disciplina": "Informática",
+      "eixo": "Internet e documentos",
+      "topico": "Sistemas de protocolo eletrônico",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 85,
+      "disciplina": "Informática",
+      "eixo": "Internet e documentos",
+      "topico": "Sistemas de gestão documental e legislativa",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 86,
+      "disciplina": "Informática",
+      "eixo": "Internet e documentos",
+      "topico": "Digitalização e organização de documentos eletrônicos",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 87,
+      "disciplina": "Informática",
+      "eixo": "Internet e documentos",
+      "topico": "Conversão e armazenamento de documentos, inclusive PDF",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 88,
+      "disciplina": "Informática",
+      "eixo": "Segurança",
+      "topico": "Senhas e autenticação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 89,
+      "disciplina": "Informática",
+      "eixo": "Segurança",
+      "topico": "Cópias de segurança (backup)",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 90,
+      "disciplina": "Informática",
+      "eixo": "Segurança",
+      "topico": "Vírus e malwares",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 91,
+      "disciplina": "Informática",
+      "eixo": "Segurança",
+      "topico": "Fraudes eletrônicas e golpes digitais",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 92,
+      "disciplina": "Legislação Municipal",
+      "eixo": "Normas de Pomerode",
+      "topico": "LC municipal 269/2014 — Regime Jurídico dos Servidores, com alterações",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 93,
+      "disciplina": "Legislação Municipal",
+      "eixo": "Normas de Pomerode",
+      "topico": "Resolução 42/2013 — Estrutura administrativa e quadro de pessoal do Legislativo, com alterações",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 94,
+      "disciplina": "Legislação Municipal",
+      "eixo": "Normas de Pomerode",
+      "topico": "LC municipal 441/2021 — Plano de Carreira dos servidores efetivos do Legislativo, com alterações",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 95,
+      "disciplina": "Legislação Municipal",
+      "eixo": "Normas de Pomerode",
+      "topico": "Lei Orgânica do Município de Pomerode",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 96,
+      "disciplina": "Legislação Municipal",
+      "eixo": "Normas de Pomerode",
+      "topico": "Resolução Legislativa 87/2025 — Regimento Interno da Câmara, com alterações",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 97,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "História e geografia",
+      "topico": "Aspectos históricos: Brasil, SC e Pomerode",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 98,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "História e geografia",
+      "topico": "Aspectos geográficos: Brasil, SC e Pomerode",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 99,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "História e geografia",
+      "topico": "Aspectos sociais, culturais e políticos: Brasil, SC e Pomerode",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 100,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "História e geografia",
+      "topico": "Aspectos econômicos: Brasil, SC e Pomerode",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 101,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "História e geografia",
+      "topico": "Formação territorial e população",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 102,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "História e geografia",
+      "topico": "Identidade regional e patrimônio histórico-cultural",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 103,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "História e geografia",
+      "topico": "Desenvolvimento urbano e atividades produtivas",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 104,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "Cidadania e ambiente",
+      "topico": "Meio ambiente, sustentabilidade e qualidade de vida",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 105,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "Cidadania e ambiente",
+      "topico": "Organização político-administrativa",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 106,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "Cidadania e ambiente",
+      "topico": "Cidadania, direitos sociais e participação social",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 107,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "Cidadania e ambiente",
+      "topico": "Políticas públicas e serviços públicos",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 108,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "Atualidades",
+      "topico": "Atualidades: sociedade, economia e mundo do trabalho",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 109,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "Atualidades",
+      "topico": "Atualidades: educação, saúde e segurança",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 110,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "Atualidades",
+      "topico": "Atualidades: ciência, tecnologia e inovação",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 111,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "Atualidades",
+      "topico": "Atualidades: cultura, comunicação e mídias digitais",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 112,
+      "disciplina": "Conhecimentos Gerais",
+      "eixo": "Atualidades",
+      "topico": "Atualidades locais, regionais, nacionais e internacionais",
+      "prioridade": "Média",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 113,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Direito Administrativo: conceitos e princípios",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 114,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Discricionariedade administrativa",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 115,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Controle de legalidade; anulação e revogação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 116,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Prescrição",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 117,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Organização administrativa: noções gerais",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 118,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Descentralização e desconcentração",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 119,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Órgãos públicos; administração direta e indireta",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 120,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Contratos administrativos: elementos e características",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 121,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Contratos administrativos: cláusulas exorbitantes",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 122,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Licitações: princípios e modalidades",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 123,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Licitações: dispensa e inexigibilidade",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 124,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Administrativo",
+      "topico": "Licitações: adjudicação e homologação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 125,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Serviços públicos: noções gerais e competências federativas",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 126,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Formas de execução e delegação de serviços",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 127,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Concessão, permissão e autorização",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 128,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Parcerias público-privadas: concessões administrativa e patrocinada",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 129,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Gestão associada dos serviços públicos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 130,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Tarifa e preço",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 131,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Retomada do serviço e encampação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 132,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Desapropriação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 133,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Reversibilidade dos bens afetos ao serviço",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 134,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Servidores públicos: regimes, direitos e deveres",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 135,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Acumulação de cargos e nepotismo",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 136,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Estabilidade dos servidores",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 137,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Serviços públicos e agentes",
+      "topico": "Processo Administrativo Disciplinar",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 138,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Regime administrativo",
+      "topico": "Bens públicos: espécies e regime jurídico",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 139,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Regime administrativo",
+      "topico": "Afetação e desafetação; bens móveis e imóveis",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 140,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Regime administrativo",
+      "topico": "Poder de polícia",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 141,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Regime administrativo",
+      "topico": "Intervenção do Estado na propriedade",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 142,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Regime administrativo",
+      "topico": "Poderes e deveres dos administradores públicos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 143,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Regime administrativo",
+      "topico": "Poder hierárquico e poder disciplinar",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 144,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Regime administrativo",
+      "topico": "Poder regulamentar",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 145,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Regime administrativo",
+      "topico": "Controle administrativo, parlamentar e jurisdicional; autocontrole",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 146,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Regime administrativo",
+      "topico": "Improbidade Administrativa",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 147,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Regime administrativo",
+      "topico": "Tribunais de Contas",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 148,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Constituição: conceitos, vigência, validade e eficácia",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 149,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Normas constitucionais e infraconstitucionais do regime anterior",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 150,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Estado Democrático de Direito",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 151,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "República, Monarquia, Presidencialismo e Parlamentarismo",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 152,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Supremacia da Constituição",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 153,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Controle de constitucionalidade de leis e atos normativos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 154,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Ação direta de inconstitucionalidade (ADI)",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 155,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Ação declaratória de constitucionalidade (ADC)",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 156,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Arguição de descumprimento de preceito fundamental (ADPF)",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 157,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Inconstitucionalidade perante a Constituição Estadual",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 158,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Direitos e garantias fundamentais individuais e coletivos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 159,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Direitos políticos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 160,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Direitos sociais e difusos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 161,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Organização político-administrativa do Brasil",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 162,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Repartição de competências e seus critérios",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 163,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Competências político-administrativas e legislativas",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 164,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Princípio da Reserva da Administração",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 165,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Autonomia dos entes federativos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 166,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direito Constitucional",
+      "topico": "Município na Constituição Federal e competências municipais",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 167,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Separação de Poderes e freios e contrapesos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 168,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Funções legislativa, administrativa e jurisdicional",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 169,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Poder Legislativo: organização e funções típicas e atípicas",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 170,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Imunidade parlamentar de senadores, deputados e vereadores",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 171,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Regime remuneratório e verbas indenizatórias de parlamentares",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 172,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Proibições e perda do mandato parlamentar",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 173,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Controle parlamentar dos atos administrativos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 174,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Comissões Parlamentares de Inquérito: objeto, poderes e limites",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 175,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Processo legislativo: iniciativa de leis",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 176,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Emendas parlamentares; discussão e votação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 177,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Sanção e veto; promulgação e publicação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 178,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Poder Executivo: atribuições do Chefe",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 179,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Prefeito: mandato, perda, atribuições e responsabilidade",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 180,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Responsabilidade político-administrativa e crime de responsabilidade",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 181,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Poderes e processo legislativo",
+      "topico": "Poder regulamentar: natureza, modalidades e limites",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 182,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Administração Pública: princípios, organização e rotinas",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 183,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Redação oficial e elaboração de documentos administrativos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 184,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Técnica legislativa e LC federal 95/1998, com alterações",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 185,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Protocolo e tramitação documental",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 186,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Controle, arquivamento, digitalização e publicação de documentos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 187,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Gestão documental: classificação, organização e guarda",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 188,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Gestão documental: conservação, localização e recuperação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 189,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Organização e funcionamento da Câmara Municipal",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 190,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Processo legislativo municipal: proposições e tramitação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 191,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Processo legislativo municipal: sessões e comissões",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 192,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Discussão, votação, sanção, veto, promulgação e publicação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 193,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Espécies de proposições e atos do Legislativo",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 194,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Controle de prazos, requerimentos e ofícios",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 195,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Controle de votações e deliberações do Plenário",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 196,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Elaboração e transcrição de atas",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 197,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Rotinas e redação legislativa",
+      "topico": "Elaboração de minutas, instruções, relatórios e demais atos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 198,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Compras, transparência e ética",
+      "topico": "Lei federal 14.133/2021: noções de licitações e contratos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 199,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Compras, transparência e ética",
+      "topico": "Lei 14.133/2021: planejamento das contratações",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 200,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Compras, transparência e ética",
+      "topico": "Lei 14.133/2021: pesquisa de preços",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 201,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Compras, transparência e ética",
+      "topico": "Lei 14.133/2021: contratação direta",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 202,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Compras, transparência e ética",
+      "topico": "Lei 14.133/2021: acompanhamento de contratos",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 203,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Compras, transparência e ética",
+      "topico": "Transparência administrativa e acesso à informação",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 204,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Compras, transparência e ética",
+      "topico": "Proteção de dados pessoais",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 205,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Compras, transparência e ética",
+      "topico": "Relações humanas no trabalho",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    },
+    {
+      "id": 206,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Compras, transparência e ética",
+      "topico": "Ética profissional no serviço público",
+      "prioridade": "Alta",
+      "fonte": "https://anexos-r2.selecao.net.br/uploads/342/concursos/578/anexos/92275edd-c8bf-408e-b895-e03eb35c5c8f.pdf"
+    }
+  ]
+}

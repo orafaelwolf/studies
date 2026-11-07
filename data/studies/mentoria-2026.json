@@ -1,0 +1,105 @@
+{
+  "titulo": "Mentoria estatística integrada — Pomerode e GMBC",
+  "metodo": "exclusivamente_questoes_e_flashcards",
+  "horasLiquidasPorDia": 6,
+  "horizonteDias": 30,
+  "orcamentoHoras": 180,
+  "pomerodePrioritariaAte": "2026-12-13",
+  "notas": [
+    "Pomerode com prova e pesos do edital; GMBC usa hipóteses de planejamento, não edital oficial.",
+    "Estimativas de incidência e de transferência não são frequência histórica confirmada.",
+    "Alocação inicial deve ser recalculada com o desempenho real por tópico."
+  ],
+  "blocos": [
+    {
+      "concurso": "pomerode",
+      "bloco": "Regimento 87/2025, Lei Orgânica e processo legislativo",
+      "horas": 28,
+      "prioridade": "K"
+    },
+    {
+      "concurso": "comum",
+      "bloco": "Direito Administrativo, Constitucional seletivo e Lei 14.133",
+      "horas": 18,
+      "prioridade": "K/M"
+    },
+    {
+      "concurso": "pomerode",
+      "bloco": "Português (FURB)",
+      "horas": 16,
+      "prioridade": "K"
+    },
+    {
+      "concurso": "pomerode",
+      "bloco": "Informática",
+      "horas": 14,
+      "prioridade": "K"
+    },
+    {
+      "concurso": "comum",
+      "bloco": "Raciocínio Lógico",
+      "horas": 8,
+      "prioridade": "M"
+    },
+    {
+      "concurso": "pomerode",
+      "bloco": "Conhecimentos Gerais locais",
+      "horas": 4,
+      "prioridade": "N/M"
+    },
+    {
+      "concurso": "gmbc",
+      "bloco": "Lei 3.029/2009, Estatuto GMBC, LC 104/2024",
+      "horas": 14,
+      "prioridade": "K"
+    },
+    {
+      "concurso": "gmbc",
+      "bloco": "CF art. 144, Lei 13.022 e SUSP",
+      "horas": 12,
+      "prioridade": "K"
+    },
+    {
+      "concurso": "gmbc",
+      "bloco": "CPP",
+      "horas": 10,
+      "prioridade": "K"
+    },
+    {
+      "concurso": "gmbc",
+      "bloco": "Código Penal",
+      "horas": 10,
+      "prioridade": "K"
+    },
+    {
+      "concurso": "gmbc",
+      "bloco": "CTB",
+      "horas": 9,
+      "prioridade": "K"
+    },
+    {
+      "concurso": "gmbc",
+      "bloco": "Leis especiais GM",
+      "horas": 9,
+      "prioridade": "M"
+    },
+    {
+      "concurso": "comum",
+      "bloco": "Administração, TIC, LGPD e LAI",
+      "horas": 8,
+      "prioridade": "K/M"
+    },
+    {
+      "concurso": "gmbc",
+      "bloco": "Redação FEPESE (hipótese, não confirmada GMBC)",
+      "horas": 5,
+      "prioridade": "M"
+    },
+    {
+      "concurso": "comum",
+      "bloco": "Questões mistas, simulados e revisão de flashcards/erros",
+      "horas": 15,
+      "prioridade": "K"
+    }
+  ]
+}

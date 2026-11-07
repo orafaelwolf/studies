@@ -1,0 +1,1858 @@
+{
+  "id": "gmbc-2026",
+  "nome": "Guarda Municipal de Balneário Camboriú — Planejamento",
+  "sigla": "GMBC",
+  "situacao": "planejamento_nao_oficial",
+  "banca": null,
+  "edital": null,
+  "prova": null,
+  "questoes": 50,
+  "pontos": 10,
+  "fontes": {
+    "arquivo": "GMBC_edital_base_verticalizado_2026_2027.xlsx",
+    "pdf": "GMBC_edital_base_verticalizado_2026_2027.pdf",
+    "referencia": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1",
+    "observacao": "Analogia com GM Itajaí 002/2026 e adaptação das normas locais de BC; não é edital GMBC."
+  },
+  "nota": "Distribuição por disciplina e pesos é hipótese de planejamento baseada na FEPESE Itajaí 2026; não é previsão oficial de BC.",
+  "disciplinas": [
+    {
+      "disciplina": "Língua Portuguesa",
+      "questoes": 5,
+      "pontos": 0.7,
+      "topicos": 17
+    },
+    {
+      "disciplina": "História e Geografia de BC",
+      "questoes": 5,
+      "pontos": 0.7,
+      "topicos": 21
+    },
+    {
+      "disciplina": "Raciocínio Lógico",
+      "questoes": 5,
+      "pontos": 0.7,
+      "topicos": 18
+    },
+    {
+      "disciplina": "Competência Digital / TIC",
+      "questoes": 5,
+      "pontos": 0.7,
+      "topicos": 14
+    },
+    {
+      "disciplina": "Administração Pública",
+      "questoes": 5,
+      "pontos": 0.7,
+      "topicos": 18
+    },
+    {
+      "disciplina": "Conhecimentos Específicos",
+      "questoes": 25,
+      "pontos": 6.5,
+      "topicos": 104
+    }
+  ],
+  "topicos": [
+    {
+      "id": 1,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Interpretação de textos",
+      "topico": "Informações explícitas em textos administrativos e normativos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 2,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Interpretação de textos",
+      "topico": "Sentido global e finalidade do texto",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 3,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Interpretação de textos",
+      "topico": "Inferências a partir do contexto",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 4,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Interpretação de textos",
+      "topico": "Interpretação de textos institucionais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 5,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Coesão e coerência",
+      "topico": "Conectivos: adição, oposição, causa, consequência e conclusão",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 6,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Coesão e coerência",
+      "topico": "Relações de sentido entre frases e parágrafos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 7,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Coesão e coerência",
+      "topico": "Coerência, progressão temática e articulação de ideias",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 8,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Gramática funcional",
+      "topico": "Concordância verbal",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 9,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Gramática funcional",
+      "topico": "Concordância nominal",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 10,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Gramática funcional",
+      "topico": "Regência verbal e nominal",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 11,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Gramática funcional",
+      "topico": "Emprego de crase",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 12,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Gramática funcional",
+      "topico": "Pontuação e efeitos de sentido",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 13,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Gramática funcional",
+      "topico": "Ortografia e acentuação",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 14,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Gramática funcional",
+      "topico": "Uso da norma-padrão em comunicações públicas",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 15,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Comunicação oficial",
+      "topico": "Vocabulário de documentos públicos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 16,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Comunicação oficial",
+      "topico": "Ofício, memorando, portaria e despacho: identificação e finalidade",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 17,
+      "disciplina": "Língua Portuguesa",
+      "eixo": "Comunicação oficial",
+      "topico": "Gêneros institucionais e adequação de linguagem",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 18,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Formação histórica",
+      "topico": "Povos originários, povoamento e colonização luso-açoriana",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/AU6GQ4RM.pdf"
+    },
+    {
+      "id": 19,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Formação histórica",
+      "topico": "Desmembramento de Camboriú e emancipação municipal (1964)",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/AU6GQ4RM.pdf"
+    },
+    {
+      "id": 20,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Formação histórica",
+      "topico": "Evolução das atividades turísticas e urbanização do litoral",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/AU6GQ4RM.pdf"
+    },
+    {
+      "id": 21,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Formação histórica",
+      "topico": "Transformações sociais, migração e verticalização urbana",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/AU6GQ4RM.pdf"
+    },
+    {
+      "id": 22,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Geografia e território",
+      "topico": "Localização, limites municipais, Oceano Atlântico e BR-101",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/HX8HT2CA.pdf"
+    },
+    {
+      "id": 23,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Geografia e território",
+      "topico": "Rio Camboriú, bacia hidrográfica, praias e relevo",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/HX8HT2CA.pdf"
+    },
+    {
+      "id": 24,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Geografia e território",
+      "topico": "Região da AMFRI e integração com os municípios vizinhos",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/HX8HT2CA.pdf"
+    },
+    {
+      "id": 25,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Geografia e território",
+      "topico": "Bairros e organização do território municipal",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/HX8HT2CA.pdf"
+    },
+    {
+      "id": 26,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Geografia e território",
+      "topico": "Patrimônio ambiental, Mata Atlântica e unidades naturais",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/HX8HT2CA.pdf"
+    },
+    {
+      "id": 27,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Geografia e território",
+      "topico": "Vulnerabilidades urbanas, riscos climáticos e defesa civil",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/HX8HT2CA.pdf"
+    },
+    {
+      "id": 28,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Socioeconomia local",
+      "topico": "Turismo, serviços e comércio como atividades econômicas",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.ibge.gov.br/cidades-e-estados/sc/balneario-camboriu.html"
+    },
+    {
+      "id": 29,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Socioeconomia local",
+      "topico": "Mercado imobiliário, construção civil e sazonalidade",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.ibge.gov.br/cidades-e-estados/sc/balneario-camboriu.html"
+    },
+    {
+      "id": 30,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Socioeconomia local",
+      "topico": "Indicadores do IBGE: população, área, densidade e desenvolvimento",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.ibge.gov.br/cidades-e-estados/sc/balneario-camboriu.html"
+    },
+    {
+      "id": 31,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Socioeconomia local",
+      "topico": "Desafios urbanos: mobilidade, saneamento e uso do solo",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.ibge.gov.br/cidades-e-estados/sc/balneario-camboriu.html"
+    },
+    {
+      "id": 32,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Socioeconomia local",
+      "topico": "Integração regional e relações intermunicipais",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://www.ibge.gov.br/cidades-e-estados/sc/balneario-camboriu.html"
+    },
+    {
+      "id": 33,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Organização municipal",
+      "topico": "Autonomia, competências e poderes municipais",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/lei-organica-balneario-camboriu-sc-2026-02-25-versao-compilada"
+    },
+    {
+      "id": 34,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Organização municipal",
+      "topico": "Lei Orgânica: competências locais e organização administrativa",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/lei-organica-balneario-camboriu-sc-2026-02-25-versao-compilada"
+    },
+    {
+      "id": 35,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Organização municipal",
+      "topico": "Planejamento urbano e políticas públicas locais",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/lei-organica-balneario-camboriu-sc-2026-02-25-versao-compilada"
+    },
+    {
+      "id": 36,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Organização municipal",
+      "topico": "Estrutura administrativa atual e órgãos municipais",
+      "origem": "Adaptado para BC",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/lei-organica-balneario-camboriu-sc-2026-02-25-versao-compilada"
+    },
+    {
+      "id": 37,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Complementos territoriais",
+      "topico": "Lei 1.840/1999 e alterações: criação/denominação de bairros",
+      "origem": "Complemento preventivo (não consta expressamente em Itajaí)",
+      "prioridade": "Complementar",
+      "fonte": "https://controladoria.bc.sc.gov.br/arquivos/controladoria/lei-n-o-4-974"
+    },
+    {
+      "id": 38,
+      "disciplina": "História e Geografia de BC",
+      "eixo": "Complementos territoriais",
+      "topico": "Lei 4.974/2025: ajustes na organização dos bairros",
+      "origem": "Complemento preventivo (não consta expressamente em Itajaí)",
+      "prioridade": "Complementar",
+      "fonte": "https://controladoria.bc.sc.gov.br/arquivos/controladoria/lei-n-o-4-974"
+    },
+    {
+      "id": 39,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Proposições, valor lógico e negação",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 40,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Conectivos lógicos (e, ou, se...então, se e somente se)",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 41,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Condição necessária e suficiente",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 42,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Equivalências e argumentos simples",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 43,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Lógica formal",
+      "topico": "Conclusões válidas em situações-problema",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 44,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Sequências e contagem",
+      "topico": "Sequências numéricas e padrões lógicos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 45,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Sequências e contagem",
+      "topico": "Sequências figurais e identificação de regras",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 46,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Sequências e contagem",
+      "topico": "Princípio fundamental da contagem",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 47,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Sequências e contagem",
+      "topico": "Arranjos/combinatória simples em problemas práticos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 48,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética aplicada",
+      "topico": "Razões e proporções",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 49,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética aplicada",
+      "topico": "Regra de três e grandezas proporcionais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 50,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética aplicada",
+      "topico": "Porcentagens e variação percentual",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 51,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética aplicada",
+      "topico": "Problemas de operações básicas e unidades",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 52,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Aritmética aplicada",
+      "topico": "Raciocínio dedutivo aplicado ao cotidiano",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 53,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Leitura de dados",
+      "topico": "Interpretação de tabelas",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 54,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Leitura de dados",
+      "topico": "Interpretação de gráficos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 55,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Leitura de dados",
+      "topico": "Médias e indicadores estatísticos simples",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 56,
+      "disciplina": "Raciocínio Lógico",
+      "eixo": "Leitura de dados",
+      "topico": "Questões integradas de lógica quantitativa",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 57,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Tecnologia e governo digital",
+      "topico": "Lei 14.129/2021: princípios e serviços digitais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 58,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Tecnologia e governo digital",
+      "topico": "Ferramentas do governo digital e plataformas públicas",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 59,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Tecnologia e governo digital",
+      "topico": "Atendimento ao cidadão por canais digitais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 60,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Ferramentas de escritório",
+      "topico": "Sistemas operacionais e gerenciamento de arquivos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 61,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Ferramentas de escritório",
+      "topico": "Editores de texto: formatação, revisão e documentos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 62,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Ferramentas de escritório",
+      "topico": "Planilhas: células, fórmulas e classificação de dados",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 63,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Ferramentas de escritório",
+      "topico": "E-mail, anexos, navegação e pesquisa na internet",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 64,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Ferramentas de escritório",
+      "topico": "Plataformas de comunicação no trabalho",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 65,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Dados e segurança",
+      "topico": "Organização de registros e dados em planilhas e sistemas",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 66,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Dados e segurança",
+      "topico": "Proteção de senhas, autenticação e prevenção de golpes",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 67,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Dados e segurança",
+      "topico": "LGPD (Lei 13.709/2018): dados pessoais e bases fundamentais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 68,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Dados e segurança",
+      "topico": "Segurança da informação e privacidade",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 69,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Dados e segurança",
+      "topico": "Lei 12.527/2011: transparência e acesso à informação",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 70,
+      "disciplina": "Competência Digital / TIC",
+      "eixo": "Dados e segurança",
+      "topico": "Uso ético de recursos digitais do poder público",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 71,
+      "disciplina": "Administração Pública",
+      "eixo": "Fundamentos",
+      "topico": "Administração direta e indireta",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 72,
+      "disciplina": "Administração Pública",
+      "eixo": "Fundamentos",
+      "topico": "Legalidade, impessoalidade, moralidade, publicidade e eficiência",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 73,
+      "disciplina": "Administração Pública",
+      "eixo": "Fundamentos",
+      "topico": "Diferenças entre gestão pública e privada",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 74,
+      "disciplina": "Administração Pública",
+      "eixo": "Fundamentos",
+      "topico": "Organização e competências administrativas",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 75,
+      "disciplina": "Administração Pública",
+      "eixo": "Atos administrativos",
+      "topico": "Conceito, elementos e requisitos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 76,
+      "disciplina": "Administração Pública",
+      "eixo": "Atos administrativos",
+      "topico": "Atributos e efeitos dos atos administrativos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 77,
+      "disciplina": "Administração Pública",
+      "eixo": "Atos administrativos",
+      "topico": "Noções de anulação, revogação e convalidação",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 78,
+      "disciplina": "Administração Pública",
+      "eixo": "Contratações",
+      "topico": "Lei 14.133/2021: noções gerais de licitações e contratos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 79,
+      "disciplina": "Administração Pública",
+      "eixo": "Contratações",
+      "topico": "Objetivos e princípios de contratação pública",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 80,
+      "disciplina": "Administração Pública",
+      "eixo": "Contratações",
+      "topico": "Etapas básicas de contratação administrativa",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 81,
+      "disciplina": "Administração Pública",
+      "eixo": "Responsabilidade e transparência",
+      "topico": "Improbidade administrativa: Lei 8.429/1992 e Lei 14.230/2021",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 82,
+      "disciplina": "Administração Pública",
+      "eixo": "Responsabilidade e transparência",
+      "topico": "Responsabilidade fiscal: LC 101/2000, noções gerais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 83,
+      "disciplina": "Administração Pública",
+      "eixo": "Responsabilidade e transparência",
+      "topico": "Lei 12.527/2011: transparência e acesso à informação",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 84,
+      "disciplina": "Administração Pública",
+      "eixo": "Responsabilidade e transparência",
+      "topico": "Ética, probidade e conduta do agente público",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 85,
+      "disciplina": "Administração Pública",
+      "eixo": "Gestão e políticas públicas",
+      "topico": "Planejamento, organização, execução e controle",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 86,
+      "disciplina": "Administração Pública",
+      "eixo": "Gestão e políticas públicas",
+      "topico": "Formulação e implementação de políticas públicas",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 87,
+      "disciplina": "Administração Pública",
+      "eixo": "Gestão e políticas públicas",
+      "topico": "Atendimento ao cidadão, cortesia e qualidade do serviço",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 88,
+      "disciplina": "Administração Pública",
+      "eixo": "Gestão e políticas públicas",
+      "topico": "Direitos e deveres na prestação do serviço público",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 89,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Constituição Federal",
+      "topico": "Art. 5º: direitos e garantias fundamentais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 90,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Constituição Federal",
+      "topico": "Art. 37: princípios e regime constitucional da Administração Pública",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 91,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Constituição Federal",
+      "topico": "Art. 144: segurança pública e órgãos integrantes",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 92,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Constituição Federal",
+      "topico": "Art. 144, § 8º: guardas municipais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 93,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Constituição Federal",
+      "topico": "Competências e limites da atuação municipal em segurança",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 94,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Constituição Federal",
+      "topico": "Responsabilidade do agente público e limites da atuação estatal",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 95,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto Geral das Guardas - Lei 13.022/2014",
+      "topico": "Princípios mínimos de atuação e proteção da vida",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 96,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto Geral das Guardas - Lei 13.022/2014",
+      "topico": "Competências gerais e específicas das guardas municipais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 97,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto Geral das Guardas - Lei 13.022/2014",
+      "topico": "Proteção de bens, serviços, instalações e logradouros",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 98,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto Geral das Guardas - Lei 13.022/2014",
+      "topico": "Patrulhamento preventivo e prevenção à violência",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 99,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto Geral das Guardas - Lei 13.022/2014",
+      "topico": "Integração com forças de segurança e sistemas de cooperação",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 100,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto Geral das Guardas - Lei 13.022/2014",
+      "topico": "Uso progressivo da força e direitos humanos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 101,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto Geral das Guardas - Lei 13.022/2014",
+      "topico": "Trânsito, ambiente, defesa civil e espaço público",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 102,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto Geral das Guardas - Lei 13.022/2014",
+      "topico": "Formação, controle interno/externo e atuação institucional",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 103,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Competências da GMBC (Anexo C, arts. 1º a 4º)",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 104,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Princípios institucionais e deveres operacionais da GMBC",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 105,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Comando, subcomando, organização e unidades",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 106,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Hierarquia, disciplina e regras de serviço",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 107,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Direitos, deveres, proibições e responsabilidades dos guardas",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 108,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Regime disciplinar, infrações e penalidades",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 109,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Sindicância e processo disciplinar na GMBC",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 110,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Ingresso e requisitos previstos no estatuto",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 111,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Etapas do concurso nos arts. 17 a 21 do Anexo C",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 112,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Estágio, progressões e classes da carreira",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 113,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Curso de formação e aperfeiçoamento",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 114,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Ouvidoria e corregedoria: funções e controles",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 115,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "CEFAG: formação continuada e funções",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 116,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "ROMU: organização e regime interno (Anexo B-2)",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 117,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Núcleo de Inteligência: finalidades e limites",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 118,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei 3.029/2009 + LC 104/2024 - GMBC",
+      "topico": "Organização da Secretaria de Segurança e Ordem Pública",
+      "origem": "Adaptado de LC 274/2014 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "id": 119,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Atualizações da GMBC",
+      "topico": "LC 106/2024: alterações ao regime da LC 104/2024",
+      "origem": "Complemento local necessário",
+      "prioridade": "Alta",
+      "fonte": "https://leis.org/prefeitura/sc/balneario-camboriu/lei/lei-ordinaria/2009/3029/lei-ordinaria-n-3029-2009-reestrutura-a-secretaria-de-seguranca-e-defesa-social-criada-atraves-da-lei-municipal-n-2798-de-04-de-abril-de-2008-e-da-outras"
+    },
+    {
+      "id": 120,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Atualizações da GMBC",
+      "topico": "LC 107/2024: mudanças na corregedoria e ouvidoria",
+      "origem": "Complemento local necessário",
+      "prioridade": "Alta",
+      "fonte": "https://leis.org/prefeitura/sc/balneario-camboriu/lei/lei-ordinaria/2009/3029/lei-ordinaria-n-3029-2009-reestrutura-a-secretaria-de-seguranca-e-defesa-social-criada-atraves-da-lei-municipal-n-2798-de-04-de-abril-de-2008-e-da-outras"
+    },
+    {
+      "id": 121,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Atualizações da GMBC",
+      "topico": "Lei 5.355/2026: quadro de 290 cargos efetivos",
+      "origem": "Complemento local necessário",
+      "prioridade": "Alta",
+      "fonte": "https://leis.org/prefeitura/sc/balneario-camboriu/lei/lei-ordinaria/2009/3029/lei-ordinaria-n-3029-2009-reestrutura-a-secretaria-de-seguranca-e-defesa-social-criada-atraves-da-lei-municipal-n-2798-de-04-de-abril-de-2008-e-da-outras"
+    },
+    {
+      "id": 122,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Atualizações da GMBC",
+      "topico": "Lei 5.001/2025: estrutura administrativa geral e SESEG",
+      "origem": "Complemento local necessário",
+      "prioridade": "Alta",
+      "fonte": "https://leis.org/prefeitura/sc/balneario-camboriu/lei/lei-ordinaria/2009/3029/lei-ordinaria-n-3029-2009-reestrutura-a-secretaria-de-seguranca-e-defesa-social-criada-atraves-da-lei-municipal-n-2798-de-04-de-abril-de-2008-e-da-outras"
+    },
+    {
+      "id": 123,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto dos Servidores BC - Lei 1.069/1991",
+      "topico": "Regime jurídico e conceitos de cargo público",
+      "origem": "Adaptado de Lei 2.960/1995 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/estatuto-do-servidor-funcionario-publico-balneario-camboriu-sc-2025-04-04-versao-consolidada"
+    },
+    {
+      "id": 124,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto dos Servidores BC - Lei 1.069/1991",
+      "topico": "Provimento, nomeação, posse e exercício",
+      "origem": "Adaptado de Lei 2.960/1995 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/estatuto-do-servidor-funcionario-publico-balneario-camboriu-sc-2025-04-04-versao-consolidada"
+    },
+    {
+      "id": 125,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto dos Servidores BC - Lei 1.069/1991",
+      "topico": "Vacância, exoneração e formas de desligamento",
+      "origem": "Adaptado de Lei 2.960/1995 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/estatuto-do-servidor-funcionario-publico-balneario-camboriu-sc-2025-04-04-versao-consolidada"
+    },
+    {
+      "id": 126,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto dos Servidores BC - Lei 1.069/1991",
+      "topico": "Direitos, vantagens e licenças",
+      "origem": "Adaptado de Lei 2.960/1995 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/estatuto-do-servidor-funcionario-publico-balneario-camboriu-sc-2025-04-04-versao-consolidada"
+    },
+    {
+      "id": 127,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto dos Servidores BC - Lei 1.069/1991",
+      "topico": "Deveres, proibições e responsabilidades",
+      "origem": "Adaptado de Lei 2.960/1995 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/estatuto-do-servidor-funcionario-publico-balneario-camboriu-sc-2025-04-04-versao-consolidada"
+    },
+    {
+      "id": 128,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto dos Servidores BC - Lei 1.069/1991",
+      "topico": "Regime disciplinar, sindicância e PAD",
+      "origem": "Adaptado de Lei 2.960/1995 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/estatuto-do-servidor-funcionario-publico-balneario-camboriu-sc-2025-04-04-versao-consolidada"
+    },
+    {
+      "id": 129,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto dos Servidores BC - Lei 1.069/1991",
+      "topico": "Ética e conduta funcional",
+      "origem": "Adaptado de Lei 2.960/1995 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/estatuto-do-servidor-funcionario-publico-balneario-camboriu-sc-2025-04-04-versao-consolidada"
+    },
+    {
+      "id": 130,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto dos Servidores BC - Lei 1.069/1991",
+      "topico": "Aplicação subsidiária do estatuto geral à GMBC",
+      "origem": "Adaptado de Lei 2.960/1995 de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://leggicomunali.it/estatuto-do-servidor-funcionario-publico-balneario-camboriu-sc-2025-04-04-versao-consolidada"
+    },
+    {
+      "id": 131,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "SUSP - Lei 13.675/2018",
+      "topico": "Princípios e diretrizes do Sistema Único de Segurança Pública",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 132,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "SUSP - Lei 13.675/2018",
+      "topico": "Órgãos integrantes e cooperação federativa",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 133,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "SUSP - Lei 13.675/2018",
+      "topico": "Política de Segurança Pública e Defesa Social",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 134,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "SUSP - Lei 13.675/2018",
+      "topico": "Gestão integrada e prevenção à violência",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 135,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "SUSP - Lei 13.675/2018",
+      "topico": "Respeito aos direitos fundamentais e atuação integrada",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 136,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Trânsito Brasileiro - Lei 9.503/1997",
+      "topico": "Sistema Nacional de Trânsito",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 137,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Trânsito Brasileiro - Lei 9.503/1997",
+      "topico": "Normas de circulação, conduta e sinalização",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 138,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Trânsito Brasileiro - Lei 9.503/1997",
+      "topico": "Competências municipais na fiscalização de trânsito",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 139,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Trânsito Brasileiro - Lei 9.503/1997",
+      "topico": "Infrações e medidas administrativas",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 140,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Trânsito Brasileiro - Lei 9.503/1997",
+      "topico": "Fiscalização, autuação e remoção de veículos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 141,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Trânsito Brasileiro - Lei 9.503/1997",
+      "topico": "Acidentes e segurança viária",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 142,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Trânsito Brasileiro - Lei 9.503/1997",
+      "topico": "Educação para o trânsito",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 143,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Trânsito Brasileiro - Lei 9.503/1997",
+      "topico": "Crimes de trânsito em linhas gerais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 144,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto do Desarmamento - Lei 10.826/2003",
+      "topico": "Registro, posse e porte de arma de fogo",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 145,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto do Desarmamento - Lei 10.826/2003",
+      "topico": "Porte funcional e regras para guardas municipais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 146,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto do Desarmamento - Lei 10.826/2003",
+      "topico": "Responsabilidades na guarda e no uso de armamento",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 147,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto do Desarmamento - Lei 10.826/2003",
+      "topico": "Crimes previstos no Estatuto do Desarmamento",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 148,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto do Desarmamento - Lei 10.826/2003",
+      "topico": "Segurança e controle de armamento",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 149,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código Penal",
+      "topico": "Aplicação da lei penal e elementos do crime",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 150,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código Penal",
+      "topico": "Dolo, culpa, tentativa e consumação",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 151,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código Penal",
+      "topico": "Legítima defesa, estado de necessidade e excludentes",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 152,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código Penal",
+      "topico": "Concurso de pessoas",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 153,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código Penal",
+      "topico": "Crimes contra a pessoa",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 154,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código Penal",
+      "topico": "Crimes contra o patrimônio",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 155,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código Penal",
+      "topico": "Crimes contra a Administração Pública",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 156,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Processo Penal",
+      "topico": "Prisão em flagrante e direitos do preso",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 157,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Processo Penal",
+      "topico": "Busca pessoal e veicular: fundamentos legais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 158,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Processo Penal",
+      "topico": "Apreensão de objetos e preservação de vestígios",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 159,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Processo Penal",
+      "topico": "Preservação de local de crime",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 160,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Processo Penal",
+      "topico": "Cadeia de custódia",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 161,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Código de Processo Penal",
+      "topico": "Encaminhamento da ocorrência e garantias processuais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 162,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei de Drogas - Lei 11.343/2006",
+      "topico": "Sistema Nacional de Políticas Públicas sobre Drogas",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 163,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei de Drogas - Lei 11.343/2006",
+      "topico": "Prevenção ao uso indevido de drogas",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 164,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei de Drogas - Lei 11.343/2006",
+      "topico": "Distinção legal e jurisprudencial entre usuário e tráfico",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 165,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei de Drogas - Lei 11.343/2006",
+      "topico": "Condutas proibidas e tipos penais centrais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 166,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei de Drogas - Lei 11.343/2006",
+      "topico": "Apreensão e encaminhamento de ocorrências",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 167,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Crimes ambientais - Lei 9.605/1998",
+      "topico": "Responsabilidade e proteção ambiental",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 168,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Crimes ambientais - Lei 9.605/1998",
+      "topico": "Infrações penais e administrativas ambientais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 169,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Crimes ambientais - Lei 9.605/1998",
+      "topico": "Crimes contra fauna e flora",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 170,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Crimes ambientais - Lei 9.605/1998",
+      "topico": "Poluição e maus-tratos a animais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 171,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Crimes ambientais - Lei 9.605/1998",
+      "topico": "Competências municipais de proteção ambiental",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 172,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Abuso de Autoridade - Lei 13.869/2019",
+      "topico": "Sujeitos ativos e responsabilização",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 173,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Abuso de Autoridade - Lei 13.869/2019",
+      "topico": "Condutas típicas e limites da atuação estatal",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 174,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Abuso de Autoridade - Lei 13.869/2019",
+      "topico": "Proteção dos direitos individuais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 175,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Abuso de Autoridade - Lei 13.869/2019",
+      "topico": "Consequências e procedimentos legais",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 176,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "ECA - Lei 8.069/1990",
+      "topico": "Direitos fundamentais e proteção integral",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 177,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "ECA - Lei 8.069/1990",
+      "topico": "Medidas de proteção e Conselho Tutelar",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 178,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "ECA - Lei 8.069/1990",
+      "topico": "Ato infracional e procedimentos básicos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 179,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "ECA - Lei 8.069/1990",
+      "topico": "Abordagem protetiva envolvendo crianças e adolescentes",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 180,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto da Pessoa Idosa - Lei 10.741/2003",
+      "topico": "Direitos e prioridade de atendimento",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 181,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto da Pessoa Idosa - Lei 10.741/2003",
+      "topico": "Medidas de proteção e combate à violência",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 182,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto da Pessoa Idosa - Lei 10.741/2003",
+      "topico": "Crimes previstos no estatuto",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 183,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Estatuto da Pessoa Idosa - Lei 10.741/2003",
+      "topico": "Atuação integrada na proteção da pessoa idosa",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Média",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 184,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei Maria da Penha - Lei 11.340/2006",
+      "topico": "Formas de violência doméstica e familiar",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 185,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei Maria da Penha - Lei 11.340/2006",
+      "topico": "Medidas protetivas de urgência",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 186,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei Maria da Penha - Lei 11.340/2006",
+      "topico": "Atendimento humanizado e proteção da vítima",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 187,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Lei Maria da Penha - Lei 11.340/2006",
+      "topico": "Integração com órgãos da rede de proteção",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 188,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direitos Humanos e uso da força",
+      "topico": "Declaração Universal dos Direitos Humanos",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 189,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direitos Humanos e uso da força",
+      "topico": "Dignidade, cidadania, igualdade e não discriminação",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 190,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direitos Humanos e uso da força",
+      "topico": "Legalidade, necessidade e proporcionalidade no uso da força",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 191,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direitos Humanos e uso da força",
+      "topico": "Proteção de grupos vulneráveis",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "id": 192,
+      "disciplina": "Conhecimentos Específicos",
+      "eixo": "Direitos Humanos e uso da força",
+      "topico": "Ética profissional, mediação de conflitos e prevenção",
+      "origem": "Mantido de Itajaí",
+      "prioridade": "Alta",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    }
+  ],
+  "ajustesLocais": [
+    {
+      "aspecto": "Lei da guarda",
+      "itajaí": "LC 274/2014 (Itajaí)",
+      "bc": "Lei 3.029/2009 e seu Anexo C, integralmente atualizado pela LC 104/2024",
+      "tipo": "Substituição municipal",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "aspecto": "Servidor público",
+      "itajaí": "Lei 2.960/1995 (Itajaí)",
+      "bc": "Lei 1.069/1991, subsidiariamente, conforme estatuto da GMBC",
+      "tipo": "Substituição municipal",
+      "fonte": "https://leggicomunali.it/estatuto-do-servidor-funcionario-publico-balneario-camboriu-sc-2025-04-04-versao-consolidada"
+    },
+    {
+      "aspecto": "História/geografia",
+      "itajaí": "Porto, logística, colonização e organização de Itajaí",
+      "bc": "Emancipação de 1964, turismo, urbanização, território e bairros de BC",
+      "tipo": "Adaptação municipal",
+      "fonte": "https://www.bc.sc.gov.br/arquivos/conteudo_downloads/AU6GQ4RM.pdf"
+    },
+    {
+      "aspecto": "Organização municipal",
+      "itajaí": "Lei Orgânica e instituições de Itajaí",
+      "bc": "Lei Orgânica e Lei 5.001/2025 (estrutura administrativa)",
+      "tipo": "Adaptação municipal",
+      "fonte": "https://leggicomunali.it/lei-organica-balneario-camboriu-sc-2026-02-25-versao-compilada"
+    },
+    {
+      "aspecto": "Atualização GMBC",
+      "itajaí": "Não aplicável ao edital Itajaí",
+      "bc": "LC 106/2024 e LC 107/2024: ROMU, corregedoria e ouvidoria",
+      "tipo": "Complemento municipal",
+      "fonte": "https://leis.org/prefeitura/sc/balneario-camboriu/lei/lei-complementar/2024/106/lei-complementar-n-106-2024-altera-e-revoga-dispositivos-que-especifica-da-lei-complementar-n-104-de-05-de-abril-de"
+    },
+    {
+      "aspecto": "Quadro autorizado",
+      "itajaí": "20 vagas + cadastro de reserva na GM Itajaí",
+      "bc": "Lei 5.355/2026: 290 cargos autorizados. NÃO são 290 vagas no edital.",
+      "tipo": "Referência legal, não oferta",
+      "fonte": "https://leis.org/prefeitura/sc/balneario-camboriu/lei/lei-ordinaria/2026/5355/lei-ordinaria-n-5355-2026-dispoe-sobre-a-ampliacao-de-vagas-dos-cargos-de-provimento-efetivo-que-menciona-e-da-outras"
+    },
+    {
+      "aspecto": "Redação",
+      "itajaí": "Prevista em Itajaí",
+      "bc": "Possível para BC; não confirmada por novo edital",
+      "tipo": "Incerto",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    },
+    {
+      "aspecto": "Teste prático direção",
+      "itajaí": "Não integrar automaticamente o modelo de Itajaí",
+      "bc": "Previsto no art. 18 do Anexo C da LC 104/2024",
+      "tipo": "Atenção: lei específica BC",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "aspecto": "TAF, psico, saúde, investigação",
+      "itajaí": "Previstos em Itajaí",
+      "bc": "Também contemplados no art. 18 do Estatuto da GMBC; índices a definir",
+      "tipo": "Etapas legalmente previstas",
+      "fonte": "https://s3cache.dom.sc.gov.br/atos/2024/04/1712345205_lei_complementar_n_104_sec_de_seguranca_gm_.pdf"
+    },
+    {
+      "aspecto": "Banca/pesos",
+      "itajaí": "FEPESE, 50 questões, conhecimentos específicos = 65%",
+      "bc": "Apenas hipótese de estudo; banca da GMBC não confirmada",
+      "tipo": "Não presumir",
+      "fonte": "https://2026gmitajai.fepese.org.br/?arquivo=2026_002_CP_Itajai_Guarda.pdf&go=download&inline=1"
+    }
+  ]
+}
