@@ -1,0 +1,22 @@
+.hero {
+  width: 100%;
+  margin: 3rem 0;
+  padding: 0 1.25rem 4rem;
+  text-align: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 1rem 0;
+  font-family: var(--font-sans);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
