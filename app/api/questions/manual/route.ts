@@ -20,6 +20,9 @@ const inputSchema = z.object({
   examBoard: z.string().trim().max(120).optional().nullable(),
   examName: z.string().trim().max(180).optional().nullable(),
   legalReference: z.string().trim().max(500).optional().nullable(),
+  professorComment: z.string().trim().max(20000).optional().nullable(),
+  questionNumber: z.number().int().positive().max(1000000).optional().nullable(),
+  year: z.number().int().min(1900).max(2100).optional().nullable(),
 })
 
 function hashQuestion(prompt: string, choices: {label: string; text: string}[]) {
@@ -53,6 +56,8 @@ export async function POST(request: Request) {
   const [question] = await db.insert(questions).values({
     userId, worksheetId: worksheet.id, ordinal, promptText: data.prompt, questionType: 'multiple_choice', origin: 'generated', correctAnswer: correct, answerSource: 'user_key', userVerified: true, contentHash,
     examBoard: data.examBoard || null, examName: data.examName || null, subject: data.subject || null,
+    sourceNumber: data.questionNumber || null, examYear: data.year || null,
+    professorComment: data.professorComment || null,
   }).returning({id: questions.id})
   const createdChoices = await db.insert(answerChoices).values(data.choices.map((choice) => ({questionId: question.id, label: choice.label.toUpperCase(), text: choice.text, isCorrect: choice.label.toUpperCase() === correct}))).returning({id: answerChoices.id, label: answerChoices.label})
   const marked = data.markedAnswer?.toUpperCase()

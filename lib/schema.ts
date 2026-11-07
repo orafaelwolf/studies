@@ -295,6 +295,9 @@ export const questions = pgTable(
     examBoard: text('exam_board'),
     examName: text('exam_name'),
     subject: text('subject'),
+    sourceNumber: integer('source_number'),
+    examYear: integer('exam_year'),
+    professorComment: text('professor_comment'),
     embedding: vector('embedding', {dimensions: 384}),
 
     createdAt: createdAt(),
