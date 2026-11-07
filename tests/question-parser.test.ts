@@ -1,7 +1,32 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import {readFileSync} from 'node:fs'
 
 import {parseQuestionText} from '@/lib/questions/parser'
+
+test('colagem real Q4443531 sem cabeçalhos artificiais', () => {
+  const input = readFileSync('tests/fixtures/q4443531.txt', 'utf8')
+  const result = parseQuestionText(input)
+  assert.match(result.prompt, /^No desenvolvimento do texto, o autor desmente completamente/)
+  assert.equal(result.associatedText, null)
+  assert.equal(result.questionType, 'true_false')
+  assert.deepEqual(result.choices.map((choice) => choice.text), ['Certo', 'Errado'])
+  assert.equal(result.correctAnswer, 'ERRADO')
+  assert.equal(result.answerOrigin, 'comment')
+  assert.equal(result.markedAnswer, null)
+  assert.equal(result.comments.length, 1)
+  assert.equal(result.comments[0].author, 'Scriptor Futuri')
+  assert.match(result.comments[0].text, /A função do contraste é limitar/)
+  assert.doesNotMatch(result.comments[0].text, /Notificar Erro|Gabarito Comentado/)
+})
+
+test('marcadores de seção com hífen e contagem não entram no comentário', () => {
+  const result = parseQuestionText('Questão sobre o tema?\nA) Primeiro\nB) Segundo\nC) Terceiro\nD) Quarto\nE) Quinto\n- comentários ( 3 )\nMaria\n08 de Novembro de 2026 às 10:00\nGabarito: E\nExplicação extensa.\n- Aulas\n- Estatísticas')
+  assert.equal(result.choices.length, 5)
+  assert.equal(result.comments[0].author, 'Maria')
+  assert.equal(result.correctAnswer, 'E')
+  assert.doesNotMatch(result.comments[0].text, /Aulas|Estatísticas/)
+})
 
 test('interpreta Q4443531 e atribui gabarito ao comentarista', () => {
   const parsed = parseQuestionText(`Q4443531\nAno: 2026 Banca: CESPE / CEBRASPE Órgão: SEDUC-AL\nDisciplina: Português\nAssunto: Interpretação de Textos\nEnunciado:\nNo desenvolvimento do texto, o autor desmente completamente a afirmação inicial de que 'A leitura está na moda' no Brasil ao confrontar as divulgações desse gosto em ascensão no meio digital e os dados de uma realidade nacional de pouco ou nenhum acesso à leitura.\nCerto\nErrado\nComentários:\nScriptor Futuri\n07 de Novembro de 2026 às 13:14\nGabarito: ERRADO\nA questão testa a compreensão do posicionamento do autor e a atenção a termos absolutos.\nO autor delimita, não desmente. Ele relativiza a afirmação inicial, restringindo seu alcance.`)

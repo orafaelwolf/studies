@@ -70,7 +70,8 @@ function choiceAt(line: string) {
   return {label: label.toUpperCase(), text: clean(match[3])}
 }
 
-const NOISE = /^(?:aulas|estat[ií]sticas|meus filtros|cadernos|criar anota[cç][oõ]es|notificar erro|responder|ordenando por data|acompanhar coment[aá]rios|https?:\/\/\S+)\s*$/i
+const NOISE = /^(?:[-–—•]\s*)?(?:aulas|estat[ií]sticas|meus filtros|cadernos|criar anota[cç][oõ]es|notificar erro|responder|ordenando por data|acompanhar coment[aá]rios|https?:\/\/\S+)\s*$/i
+const COMMENT_HEADING = /^(?:[-–—•]\s*)?(?:coment[aá]rios?|gabarito comentado)(?:\s*\(\s*\d+\s*\))?\s*:?\s*$/i
 const COMMENT_DATE = /^\d{1,2}\s+de\s+\S+\s+de\s+\d{4}(?:\s+[àa]s\s+\d{1,2}:\d{2})?/i
 
 function splitComments(lines: string[]) {
@@ -79,7 +80,7 @@ function splitComments(lines: string[]) {
   const flush = () => { if (current?.text.trim()) comments.push({...current, text: current.text.trim()}); current = null }
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]
-    if (NOISE.test(line)) continue
+    if (NOISE.test(line) || COMMENT_HEADING.test(line)) continue
     const professor = line.match(/^(?:coment[aá]rio\s+do\s+professor|professor(?:a)?)(?:\s+([^:]+))?\s*:\s*(.*)$/i)
     if (professor) {
       flush(); current = {author: professor[1]?.trim() || null, kind: 'professor', text: professor[2] || ''}; continue
@@ -112,7 +113,7 @@ export function parseQuestionText(source: string): ParsedQuestion {
   const subject = metadata(lines, /^(?:disciplina|mat[eé]ria|assunto)\s*:\s*(.+)$/i)
   const yearRaw = metadata(lines, /^(?:ano)\s*:\s*((?:19|20)\d{2})\b/i)
   const year = yearRaw ? Number(yearRaw) : null
-  const commentIndex = lines.findIndex((line) => /^(?:coment[aá]rios?|gabarito comentado)\s*:?$/i.test(line))
+  const commentIndex = lines.findIndex((line) => COMMENT_HEADING.test(line))
   const mainLines = commentIndex < 0 ? lines : lines.slice(0, commentIndex)
   const commentSection = commentIndex < 0 ? [] : lines.slice(commentIndex + 1)
   const answerPattern = /^(?:gabarito|resposta correta|alternativa correta)\s*:\s*(?:alternativa\s*)?\(?(CERTO|ERRADO|[A-E])\)?\b/i
@@ -140,8 +141,13 @@ export function parseQuestionText(source: string): ParsedQuestion {
     if (!line) continue
     if (/^texto associado\s*:?$/i.test(line)) { inAssociatedText = true; continue }
     if (/^enunciado\s*:?$/i.test(line)) { inAssociatedText = false; continue }
+    if (inAssociatedText && (/^(?:alternativas\s*:?|certo|errado)$/i.test(line) || choiceAt(line))) {
+      promptLines.push(...associatedLines)
+      associatedLines.length = 0
+      inAssociatedText = false
+    }
     if (inAssociatedText) { if (!NOISE.test(line)) associatedLines.push(line); continue }
-    if (NOISE.test(line) || /^Q\d{4,}$/i.test(line) || /^(?:enunciado|alternativas)\s*:$/i.test(line)) continue
+    if (NOISE.test(line) || /^Q\d{4,}$/i.test(line) || /^alternativas\s*:?$/i.test(line)) continue
     const nextSection = sectionAt(line)
     if (nextSection) {
       section = nextSection
