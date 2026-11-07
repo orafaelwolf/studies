@@ -10,7 +10,7 @@ import {countReviewQueue, getDueCards} from '@/lib/review'
 
 import ReviewSession from './review-client'
 
-export const metadata = {title: 'Review · StudyBuddy'}
+export const metadata = {title: 'Revisão · Studies'}
 
 const SITTING = 20
 

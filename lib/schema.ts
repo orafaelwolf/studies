@@ -83,6 +83,14 @@ export const reportKind = pgEnum('report_kind', ['worksheet', 'explanation'])
 
 export const cardState = pgEnum('card_state', ['new', 'learning', 'review', 'relearning'])
 
+export const knowledgeKind = pgEnum('knowledge_kind', [
+  'correct_rule', 'trap', 'law_reference', 'board_pattern',
+])
+
+export const knowledgeStatus = pgEnum('knowledge_status', ['draft', 'verified'])
+
+export const flashcardStatus = pgEnum('flashcard_status', ['draft', 'approved', 'archived'])
+
 export const usageKind = pgEnum('usage_kind', [
   'extract_page', 'answer_derive', 'classify', 'explain', 'generate_practice',
 ])
@@ -284,6 +292,9 @@ export const questions = pgTable(
     userVerified: boolean('user_verified').default(false).notNull(),
 
     contentHash: text('content_hash'),
+    examBoard: text('exam_board'),
+    examName: text('exam_name'),
+    subject: text('subject'),
     embedding: vector('embedding', {dimensions: 384}),
 
     createdAt: createdAt(),
@@ -358,6 +369,87 @@ export const questionTopics = pgTable(
     primaryKey({columns: [t.questionId, t.topicId]}),
     index('question_topics_topic_idx').on(t.topicId),
   ],
+)
+
+// A single source of truth feeds the four notebooks. Items remain drafts until
+// the student verifies them; legal references are never treated as official by
+// an AI-only claim.
+export const knowledgeItems = pgTable(
+  'knowledge_items',
+  {
+    id: id(),
+    userId: text('user_id').notNull().references(() => users.id, {onDelete: 'cascade'}),
+    kind: knowledgeKind('kind').notNull(),
+    title: text('title').notNull(),
+    body: text('body').notNull(),
+    document: jsonb('document').$type<Record<string, unknown>[]>(),
+    subject: text('subject'),
+    officialReference: text('official_reference'),
+    status: knowledgeStatus('status').default('draft').notNull(),
+    contentHash: text('content_hash').notNull(),
+    createdAt: createdAt(),
+    updatedAt: timestamp('updated_at', {withTimezone: true}).defaultNow().notNull(),
+  },
+  (t) => [
+    unique('knowledge_items_user_hash').on(t.userId, t.contentHash),
+    index('knowledge_items_user_kind_idx').on(t.userId, t.kind),
+  ],
+)
+
+export const knowledgeEvidence = pgTable(
+  'knowledge_evidence',
+  {
+    knowledgeItemId: text('knowledge_item_id').notNull().references(() => knowledgeItems.id, {onDelete: 'cascade'}),
+    questionId: text('question_id').notNull().references(() => questions.id, {onDelete: 'cascade'}),
+    createdAt: createdAt(),
+  },
+  (t) => [primaryKey({columns: [t.knowledgeItemId, t.questionId]})],
+)
+
+export const flashcards = pgTable(
+  'flashcards',
+  {
+    id: id(),
+    userId: text('user_id').notNull().references(() => users.id, {onDelete: 'cascade'}),
+    knowledgeItemId: text('knowledge_item_id').references(() => knowledgeItems.id, {onDelete: 'set null'}),
+    front: text('front').notNull(),
+    back: text('back').notNull(),
+    deck: text('deck').notNull(),
+    topic: text('topic'),
+    status: flashcardStatus('status').default('draft').notNull(),
+    contentHash: text('content_hash').notNull(),
+    dueAt: timestamp('due_at', {withTimezone: true}).notNull(),
+    stability: real('stability').default(0).notNull(),
+    difficulty: real('difficulty').default(0).notNull(),
+    elapsedDays: integer('elapsed_days').default(0).notNull(),
+    scheduledDays: integer('scheduled_days').default(0).notNull(),
+    learningSteps: integer('learning_steps').default(0).notNull(),
+    reps: integer('reps').default(0).notNull(),
+    lapses: integer('lapses').default(0).notNull(),
+    state: cardState('state').default('new').notNull(),
+    lastReview: timestamp('last_review', {withTimezone: true}),
+    createdAt: createdAt(),
+    updatedAt: timestamp('updated_at', {withTimezone: true}).defaultNow().notNull(),
+  },
+  (t) => [
+    unique('flashcards_user_hash').on(t.userId, t.contentHash),
+    index('flashcards_user_due_idx').on(t.userId, t.dueAt),
+    index('flashcards_knowledge_idx').on(t.knowledgeItemId),
+  ],
+)
+
+export const flashcardReviews = pgTable(
+  'flashcard_reviews',
+  {
+    id: id(),
+    flashcardId: text('flashcard_id').notNull().references(() => flashcards.id, {onDelete: 'cascade'}),
+    rating: integer('rating').notNull(),
+    state: cardState('state').notNull(),
+    elapsedDays: integer('elapsed_days').default(0).notNull(),
+    scheduledDays: integer('scheduled_days').default(0).notNull(),
+    reviewedAt: createdAt(),
+  },
+  (t) => [index('flashcard_reviews_card_idx').on(t.flashcardId)],
 )
 
 export const attempts = pgTable(

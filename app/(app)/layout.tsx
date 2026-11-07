@@ -17,7 +17,7 @@ async function AppTopbar() {
         >
           <Mark className="h-[18px] w-[18px] text-accent" />
           <span className="font-mono text-[0.8125rem] font-bold uppercase tracking-[0.14em]">
-            StudyBuddy
+            Studies
           </span>
         </Link>
 

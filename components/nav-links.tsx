@@ -5,10 +5,11 @@ import {usePathname} from 'next/navigation'
 
 const NAV = [
   {href: '/dashboard', label: 'Dashboard'},
-  {href: '/worksheets', label: 'Worksheets'},
-  {href: '/review', label: 'Review'},
-  {href: '/topics', label: 'Topics'},
-  {href: '/settings', label: 'Settings'},
+  {href: '/nova-questao', label: 'Nova Questão'},
+  {href: '/cadernos', label: 'Cadernos'},
+  {href: '/flashcards', label: 'Flashcards'},
+  {href: '/estatisticas', label: 'Estatísticas'},
+  {href: '/editais', label: 'Editais'},
 ]
 
 export function NavLinks() {

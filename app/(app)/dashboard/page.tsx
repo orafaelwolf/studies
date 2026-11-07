@@ -15,7 +15,7 @@ import {pathBySlug} from '@/lib/taxonomy'
 import {destination} from '@/lib/upload'
 
 
-export const metadata = {title: 'Dashboard · StudyBuddy'}
+export const metadata = {title: 'Dashboard · Studies'}
 
 const PERCENT = new Intl.NumberFormat(undefined, {
   style: 'percent',
