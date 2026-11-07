@@ -64,7 +64,7 @@ export async function POST(request: Request) {
 
   // Associa a disciplina oficial do currículo apenas quando concurso e matéria
   // correspondem exatamente aos dados cadastrados. Não inventa tópico granular.
-  const normalize = (value: string) => value.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase().trim()
+  const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim()
   const examName = normalize(data.examName || '')
   const matchedExam = STUDY_EXAMS.find((exam) => exam.id === 'pomerode-2026'
     ? examName.includes('pomerode')
