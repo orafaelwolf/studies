@@ -24,6 +24,8 @@ const inputSchema = z.object({
   professorComment: z.string().trim().max(20000).optional().nullable(),
   questionNumber: z.number().int().positive().max(1000000).optional().nullable(),
   year: z.number().int().min(1900).max(2100).optional().nullable(),
+  questionType: z.enum(['multiple_choice', 'true_false']).optional(),
+  importSource: z.object({raw: z.string().max(100000), code: z.string().nullable(), organization: z.string().nullable(), topic: z.string().nullable(), position: z.string().nullable().optional(), associatedText: z.string().nullable().optional(), attemptResult: z.string().nullable().optional(), answerOrigin: z.enum(['explicit', 'comment']).nullable(), comments: z.array(z.object({author: z.string().nullable(), kind: z.enum(['user', 'professor']), text: z.string()})).max(100)}).optional(),
 })
 
 function hashQuestion(prompt: string, choices: {label: string; text: string}[]) {
@@ -55,16 +57,17 @@ export async function POST(request: Request) {
   const ordinalRows = await db.select({ordinal: questions.ordinal}).from(questions).where(eq(questions.worksheetId, worksheet.id)).orderBy(asc(questions.ordinal))
   const ordinal = (ordinalRows.at(-1)?.ordinal || 0) + 1
   const [question] = await db.insert(questions).values({
-    userId, worksheetId: worksheet.id, ordinal, promptText: data.prompt, questionType: 'multiple_choice', origin: 'generated', correctAnswer: correct, answerSource: 'user_key', userVerified: true, contentHash,
+    userId, worksheetId: worksheet.id, ordinal, promptText: data.prompt, questionType: data.questionType || 'multiple_choice', origin: 'generated', correctAnswer: correct, answerSource: data.importSource?.answerOrigin === 'comment' ? 'none' : 'user_key', userVerified: data.importSource?.answerOrigin !== 'comment', contentHash,
     examBoard: data.examBoard || null, examName: data.examName || null, subject: data.subject || null,
     sourceNumber: data.questionNumber || null, examYear: data.year || null,
     professorComment: data.professorComment || null,
+    importSource: data.importSource,
   }).returning({id: questions.id})
   const createdChoices = await db.insert(answerChoices).values(data.choices.map((choice) => ({questionId: question.id, label: choice.label.toUpperCase(), text: choice.text, isCorrect: choice.label.toUpperCase() === correct}))).returning({id: answerChoices.id, label: answerChoices.label})
   const marked = data.markedAnswer?.toUpperCase()
   if (marked) {
     const choice = createdChoices.find((row) => row.label === marked)
-    await db.insert(attempts).values({userId, questionId: question.id, selectedChoiceId: choice?.id || null, outcome: marked === correct ? 'correct' : 'wrong', source: 'markup'})
+    await db.insert(attempts).values({userId, questionId: question.id, selectedChoiceId: choice?.id || null, outcome: data.importSource?.answerOrigin === 'comment' ? 'unsure' : marked === correct ? 'correct' : 'wrong', source: 'markup'})
   }
 
 
@@ -92,7 +95,7 @@ export async function POST(request: Request) {
   // The original question is already persisted. Enrichment is best-effort so an
   // optional processing failure never prevents the student from studying.
   try {
-    const evidence = {questionId: question.id, userId, prompt: data.prompt, choices: data.choices.map((choice) => ({label: choice.label.toUpperCase(), text: choice.text})), correctAnswer: correct, markedAnswer: marked, subject: data.subject, examBoard: data.examBoard, examName: data.examName, legalReference: data.legalReference, professorComment: data.professorComment, sourceNumber: data.questionNumber}
+    const evidence = {questionId: question.id, userId, prompt: data.prompt, choices: data.choices.map((choice) => ({label: choice.label.toUpperCase(), text: choice.text})), correctAnswer: correct, markedAnswer: marked, subject: data.subject, examBoard: data.examBoard, examName: data.examName, legalReference: data.legalReference, professorComment: data.professorComment, sourceNumber: data.questionNumber, answerOrigin: data.importSource?.answerOrigin}
     await processQuestionDeterministically(db, evidence)
     await enrichQuestionWithOpenRouter(db, evidence)
   } catch (error) {

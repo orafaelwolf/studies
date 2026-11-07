@@ -298,6 +298,7 @@ export const questions = pgTable(
     sourceNumber: integer('source_number'),
     examYear: integer('exam_year'),
     professorComment: text('professor_comment'),
+    importSource: jsonb('import_source').$type<{raw: string; code: string | null; organization: string | null; topic: string | null; position?: string | null; associatedText?: string | null; attemptResult?: string | null; answerOrigin: string | null; comments: {author: string | null; kind: string; text: string}[]}>(),
     embedding: vector('embedding', {dimensions: 384}),
 
     createdAt: createdAt(),

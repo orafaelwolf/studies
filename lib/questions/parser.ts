@@ -1,6 +1,6 @@
 import {z} from 'zod'
 
-const choiceSchema = z.object({label: z.string().regex(/^[A-Z]$/), text: z.string().min(1)})
+const choiceSchema = z.object({label: z.string().regex(/^(?:[A-Z]|CERTO|ERRADO)$/), text: z.string().min(1)})
 
 export const parsedQuestionSchema = z.object({
   questionNumber: z.number().int().positive().nullable(),
@@ -10,8 +10,17 @@ export const parsedQuestionSchema = z.object({
   subject: z.string().nullable(),
   prompt: z.string(),
   choices: z.array(choiceSchema),
-  correctAnswer: z.string().regex(/^[A-Z]$/).nullable(),
-  markedAnswer: z.string().regex(/^[A-Z]$/).nullable(),
+  correctAnswer: z.string().regex(/^(?:[A-Z]|CERTO|ERRADO)$/).nullable(),
+  markedAnswer: z.string().regex(/^(?:[A-Z]|CERTO|ERRADO)$/).nullable(),
+  code: z.string().nullable(),
+  organization: z.string().nullable(),
+  topic: z.string().nullable(),
+  position: z.string().nullable(),
+  associatedText: z.string().nullable(),
+  attemptResult: z.string().nullable(),
+  questionType: z.enum(['multiple_choice', 'true_false']),
+  answerOrigin: z.enum(['explicit', 'comment']).nullable(),
+  comments: z.array(z.object({author: z.string().nullable(), kind: z.enum(['professor', 'user']), text: z.string()})),
   professorComment: z.string().nullable(),
   legalReference: z.string().nullable(),
   unclassifiedText: z.string().nullable(),
@@ -61,32 +70,78 @@ function choiceAt(line: string) {
   return {label: label.toUpperCase(), text: clean(match[3])}
 }
 
-const HEADER = /^(?:quest[aã]o|n[ºo°.]|banca|organizadora|institui[cç][aã]o|[oó]rg[aã]o|concurso|cargo|ano|disciplina|mat[eé]ria|assunto|gabarito|resposta correta|alternativa correta|resposta marcada|sua resposta)\b/i
+const NOISE = /^(?:aulas|estat[ií]sticas|meus filtros|cadernos|criar anota[cç][oõ]es|notificar erro|responder|ordenando por data|acompanhar coment[aá]rios|https?:\/\/\S+)\s*$/i
+const COMMENT_DATE = /^\d{1,2}\s+de\s+\S+\s+de\s+\d{4}(?:\s+[àa]s\s+\d{1,2}:\d{2})?/i
+
+function splitComments(lines: string[]) {
+  const comments: ParsedQuestion['comments'] = []
+  let current: ParsedQuestion['comments'][number] | null = null
+  const flush = () => { if (current?.text.trim()) comments.push({...current, text: current.text.trim()}); current = null }
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    if (NOISE.test(line)) continue
+    const professor = line.match(/^(?:coment[aá]rio\s+do\s+professor|professor(?:a)?)(?:\s+([^:]+))?\s*:\s*(.*)$/i)
+    if (professor) {
+      flush(); current = {author: professor[1]?.trim() || null, kind: 'professor', text: professor[2] || ''}; continue
+    }
+    if (i + 1 < lines.length && COMMENT_DATE.test(lines[i + 1])) {
+      flush(); current = {author: line, kind: /^(?:prof\.?|professor(?:a)?)\b/i.test(line) ? 'professor' : 'user', text: lines[i + 1]}; i++; continue
+    }
+    if (!current) current = {author: null, kind: 'user', text: ''}
+    current.text += (current.text ? '\n' : '') + line
+  }
+  flush()
+  return comments
+}
+
+const HEADER = /^(?:(?:quest[aã]o\s*\d|n[ºo°.]\s*\d)|(?:banca|organizadora|institui[cç][aã]o|[oó]rg[aã]o|concurso|cargo|ano|disciplina|mat[eé]ria|assunto|gabarito|resposta correta|alternativa correta|resposta marcada|sua resposta)\s*:)/i
 
 export function parseQuestionText(source: string): ParsedQuestion {
-  const text = clean(source)
-  const lines = text ? text.split('\n').map(clean).filter(Boolean) : []
+  const text = clean(source).replace(/[ \t]+(?=(?:Ano|Banca|Órgão|Prova|Disciplina|Assunto|Cargo|Concurso)\s*:)/gi, '\n')
+  const lines = text ? text.split('\n').map(clean) : []
   const warnings: string[] = []
   const questionNumberRaw = metadata(lines, /^(?:quest[aã]o\s*)?(?:n[ºo°.]?\s*)?(\d{1,6})\s*(?:[-–—:.]|$)/i)
   const questionNumber = questionNumberRaw ? Number(questionNumberRaw) : null
   const examBoard = metadata(lines, /^(?:banca|organizadora|institui[cç][aã]o)\s*:\s*(.+)$/i)
-  const examName = metadata(lines, /^(?:[oó]rg[aã]o|concurso|cargo)\s*:\s*(.+)$/i)
+  const examName = metadata(lines, /^(?:prova|concurso|cargo)\s*:\s*(.+)$/i) || metadata(lines, /^[oó]rg[aã]o\s*:\s*(.+)$/i)
+  const organization = metadata(lines, /^[oó]rg[aã]o\s*:\s*(.+)$/i)
+  const topic = metadata(lines, /^assunto\s*:\s*(.+)$/i)
+  const position = metadata(lines, /^cargo\s*:\s*(.+)$/i)
+  const attemptResult = metadata(lines, /^(?:resultado|resultado da tentativa)\s*:\s*(.+)$/i)
+  const code = text.match(/\bQ\d{4,}\b/i)?.[0].toUpperCase() || null
   const subject = metadata(lines, /^(?:disciplina|mat[eé]ria|assunto)\s*:\s*(.+)$/i)
   const yearRaw = metadata(lines, /^(?:ano)\s*:\s*((?:19|20)\d{2})\b/i)
   const year = yearRaw ? Number(yearRaw) : null
-  const correctAnswer = answer(lines, /^(?:gabarito|resposta correta|alternativa correta)\s*:\s*(?:alternativa\s*)?\(?([A-E])\)?\b/i)
-  const markedAnswer = answer(lines, /^(?:resposta marcada|sua resposta)\s*:\s*(?:alternativa\s*)?\(?([A-E])\)?\b/i)
+  const commentIndex = lines.findIndex((line) => /^(?:coment[aá]rios?|gabarito comentado)\s*:?$/i.test(line))
+  const mainLines = commentIndex < 0 ? lines : lines.slice(0, commentIndex)
+  const commentSection = commentIndex < 0 ? [] : lines.slice(commentIndex + 1)
+  const answerPattern = /^(?:gabarito|resposta correta|alternativa correta)\s*:\s*(?:alternativa\s*)?\(?(CERTO|ERRADO|[A-E])\)?\b/i
+  const explicitAnswer = answer(mainLines, answerPattern)
+  const comments = splitComments(commentSection)
+  const commentAnswers = [...new Set(comments.flatMap((comment) => comment.text.split('\n').map((line) => answer([line], answerPattern)).filter((value): value is string => Boolean(value))))]
+  const commentAnswer = commentAnswers.length === 1 ? commentAnswers[0] : null
+  const correctAnswer = explicitAnswer || commentAnswer
+  const answerOrigin = explicitAnswer ? 'explicit' : commentAnswer ? 'comment' : null
+  const markedAnswer = answer(mainLines, /^(?:resposta marcada|sua resposta)\s*:\s*(?:alternativa\s*)?\(?(CERTO|ERRADO|[A-E])\)?\b/i)
+  if (commentAnswers.length > 1) warnings.push('Comentários apresentam gabaritos diferentes; confira o gabarito.')
 
   const choices: {label: string; text: string}[] = []
   const promptLines: string[] = []
+  const associatedLines: string[] = []
   const commentLines: string[] = []
   const legalLines: string[] = []
   const unclassified: string[] = []
   let activeChoice: {label: string; text: string} | null = null
   let section: Section | null = null
   let sawChoice = false
+  let inAssociatedText = false
 
-  for (const line of lines) {
+  for (const line of mainLines) {
+    if (!line) continue
+    if (/^texto associado\s*:?$/i.test(line)) { inAssociatedText = true; continue }
+    if (/^enunciado\s*:?$/i.test(line)) { inAssociatedText = false; continue }
+    if (inAssociatedText) { if (!NOISE.test(line)) associatedLines.push(line); continue }
+    if (NOISE.test(line) || /^Q\d{4,}$/i.test(line) || /^(?:enunciado|alternativas)\s*:$/i.test(line)) continue
     const nextSection = sectionAt(line)
     if (nextSection) {
       section = nextSection
@@ -106,6 +161,14 @@ export function parseQuestionText(source: string): ParsedQuestion {
       continue
     }
     if (HEADER.test(line)) continue
+    if (/^(?:resultado|resultado da tentativa)\s*:/i.test(line)) continue
+    if (/^(?:prova|cargo)\s*:/i.test(line)) continue
+    if (/^(?:certo|errado)$/i.test(line)) {
+      const label = line.toUpperCase()
+      activeChoice = {label, text: label === 'CERTO' ? 'Certo' : 'Errado'}
+      choices.push(activeChoice); sawChoice = true
+      continue
+    }
     const choice = choiceAt(line)
     if (choice) {
       sawChoice = true
@@ -128,12 +191,14 @@ export function parseQuestionText(source: string): ParsedQuestion {
 
   const prompt = clean(promptLines.join('\n'))
   if (!prompt && text) warnings.push('Enunciado não identificado com segurança; revise o campo manualmente.')
+  if (/(?:texto associado|texto de apoio)/i.test(text) && associatedLines.length === 0) warnings.push('O texto associado não foi fornecido na colagem.')
   if (!sawChoice && text) unclassified.push(text)
 
   return parsedQuestionSchema.parse({
     questionNumber: Number.isInteger(questionNumber) && questionNumber && questionNumber > 0 ? questionNumber : null,
-    examBoard, examName, year, subject, prompt, choices, correctAnswer, markedAnswer,
-    professorComment: nullable(commentLines.join('\n')),
+    examBoard, examName, year, subject, prompt, choices, correctAnswer, markedAnswer, code, organization, topic, position, attemptResult, associatedText: nullable(associatedLines.join('\n')), answerOrigin, comments,
+    questionType: choices.some((choice) => choice.label === 'CERTO') && choices.some((choice) => choice.label === 'ERRADO') ? 'true_false' : 'multiple_choice',
+    professorComment: nullable([...commentLines, ...comments.filter((comment) => comment.kind === 'professor').map((comment) => comment.text)].join('\n')),
     legalReference: nullable(legalLines.join('\n')),
     unclassifiedText: nullable(unclassified.join('\n')),
     warnings,

@@ -3,6 +3,40 @@ import test from 'node:test'
 
 import {parseQuestionText} from '@/lib/questions/parser'
 
+test('interpreta Q4443531 e atribui gabarito ao comentarista', () => {
+  const parsed = parseQuestionText(`Q4443531\nAno: 2026 Banca: CESPE / CEBRASPE Órgão: SEDUC-AL\nDisciplina: Português\nAssunto: Interpretação de Textos\nEnunciado:\nNo desenvolvimento do texto, o autor desmente completamente a afirmação inicial de que 'A leitura está na moda' no Brasil ao confrontar as divulgações desse gosto em ascensão no meio digital e os dados de uma realidade nacional de pouco ou nenhum acesso à leitura.\nCerto\nErrado\nComentários:\nScriptor Futuri\n07 de Novembro de 2026 às 13:14\nGabarito: ERRADO\nA questão testa a compreensão do posicionamento do autor e a atenção a termos absolutos.\nO autor delimita, não desmente. Ele relativiza a afirmação inicial, restringindo seu alcance.`)
+  assert.equal(parsed.code, 'Q4443531')
+  assert.equal(parsed.questionType, 'true_false')
+  assert.deepEqual(parsed.choices.map((c) => c.label), ['CERTO', 'ERRADO'])
+  assert.equal(parsed.correctAnswer, 'ERRADO')
+  assert.equal(parsed.answerOrigin, 'comment')
+  assert.equal(parsed.markedAnswer, null)
+  assert.equal(parsed.comments[0].author, 'Scriptor Futuri')
+  assert.match(parsed.prompt, /No desenvolvimento do texto/)
+  assert.doesNotMatch(parsed.prompt, /Scriptor/)
+})
+
+test('separa comentários por autor e não escolhe gabarito quando há conflito', () => {
+  const parsed = parseQuestionText('Q4443531\nEnunciado de teste?\nCerto\nErrado\nComentários:\nAna Silva\n07 de Novembro de 2026 às 13:14\nGabarito: ERRADO\nPrimeira explicação.\nAulas\nProf. Bruno\n08 de Novembro de 2026 às 09:20\nGabarito: CERTO\nSegunda explicação.\nAcompanhar comentários')
+  assert.equal(parsed.comments.length, 2)
+  assert.equal(parsed.comments[0].author, 'Ana Silva')
+  assert.equal(parsed.comments[1].kind, 'professor')
+  assert.doesNotMatch(parsed.comments[0].text, /Aulas/)
+  assert.equal(parsed.correctAnswer, null)
+  assert.equal(parsed.markedAnswer, null)
+  assert.ok(parsed.warnings.some((message) => message.includes('diferentes')))
+})
+
+test('metadados na mesma linha e texto associado explícito são preservados', () => {
+  const parsed = parseQuestionText('Q4443531\nAno: 2026 Banca: CESPE / CEBRASPE Órgão: SEDUC-AL Prova: CESPE - Professor\nDisciplina: Português Assunto: Interpretação de Textos\nCargo: Professor\nTexto associado:\nTrecho efetivamente copiado.\nEnunciado:\nJulgue o item.\nCerto\nErrado\nGabarito: ERRADO')
+  assert.equal(parsed.examBoard, 'CESPE / CEBRASPE')
+  assert.equal(parsed.organization, 'SEDUC-AL')
+  assert.equal(parsed.position, 'Professor')
+  assert.equal(parsed.associatedText, 'Trecho efetivamente copiado.')
+  assert.equal(parsed.prompt, 'Julgue o item.')
+  assert.equal(parsed.markedAnswer, null)
+})
+
 test('extrai quatro alternativas, metadados e gabarito explícito', () => {
   const result = parseQuestionText(`Questão 12\nBanca: FURB\nConcurso: Câmara de Pomerode\nAno: 2026\nDisciplina: Direito Administrativo\nSobre atos administrativos, assinale a correta.\nA) Sempre são discricionários.\nB) Podem ser vinculados.\nC) Não precisam de motivo.\nD) Não obedecem à finalidade.\nGabarito: B`)
   assert.equal(result.questionNumber, 12)
