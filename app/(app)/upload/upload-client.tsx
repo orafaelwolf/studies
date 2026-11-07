@@ -5,12 +5,7 @@ import {useRouter} from 'next/navigation'
 import {useCallback, useEffect, useId, useRef, useState} from 'react'
 
 import {ingestWorksheet, type IngestProgress} from '@/lib/client/ingest'
-import {
-  findSample,
-  parsePageRange,
-  parseQuestionCount,
-  SAMPLE_WORKSHEETS,
-} from '@/lib/upload'
+import {parsePageRange, parseQuestionCount} from '@/lib/upload'
 
 export type SubjectGroup = {
   label: string
@@ -19,7 +14,6 @@ export type SubjectGroup = {
 
 type Props = {
   subjects: SubjectGroup[]
-  initialSample?: string
   sharedReads?: {calls: number; cap: number}
 }
 
@@ -46,7 +40,7 @@ function defaultTitle(files: File[]): string {
   return first.name.replace(/\.[^.]+$/, '').slice(0, 120)
 }
 
-export default function UploadClient({subjects, initialSample, sharedReads}: Props) {
+export default function UploadClient({subjects, sharedReads}: Props) {
   const router = useRouter()
   const titleId = useId()
   const subjectId = useId()
@@ -71,7 +65,6 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
   const [notice, setNotice] = useState<string | null>(null)
   const [pending, setPending] = useState<string | null>(null)
   const [handedOff, setHandedOff] = useState(false)
-  const [loadingSample, setLoadingSample] = useState<string | null>(null)
 
   const abortRef = useRef<AbortController | null>(null)
   const runningRef = useRef(false)
@@ -131,45 +124,6 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
     })
   }, [])
 
-  const startWhenLoaded = useRef(false)
-
-  const loadSample = useCallback(async (slug: string, startAtOnce: boolean) => {
-    const sample = findSample(slug)
-    if (!sample) return
-
-    setError(null)
-    setNotice(null)
-    setLoadingSample(slug)
-
-    try {
-      const response = await fetch('/samples/' + slug + '.pdf')
-      if (!response.ok) throw new Error(String(response.status))
-
-      const blob = await response.blob()
-      const name = sample.title + '.pdf'
-
-      startWhenLoaded.current = startAtOnce
-
-      setFiles([new File([blob], name, {type: 'application/pdf'})])
-      if (!titleTouchedRef.current) setTitle(sample.title)
-      setPageFrom('1')
-      setPageTo(String(sample.pages))
-      setQuestionCount(String(sample.questions))
-    } catch {
-      setError('Could not load that sample worksheet. Try again.')
-    } finally {
-      setLoadingSample(null)
-    }
-  }, [])
-
-  const requested = useRef(false)
-
-  useEffect(() => {
-    if (requested.current || !initialSample) return
-    requested.current = true
-    void loadSample(initialSample, false)
-  }, [initialSample, loadSample])
-
   function removeFile(index: number) {
     setFiles((current) => current.filter((_, i) => i !== index))
   }
@@ -227,7 +181,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
     try {
       const result = await ingestWorksheet({
         files,
-        title: title.trim() || 'Untitled worksheet',
+        title: title.trim() || 'Caderno de questões',
         subjectHint: subject || null,
         pageRange: parsed.range,
         expectedQuestionCount: expected.count,
@@ -266,12 +220,6 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
     }
   }, [files, title, subject, pageFrom, pageTo, questionCount, router])
 
-  useEffect(() => {
-    if (!startWhenLoaded.current || files.length === 0) return
-    startWhenLoaded.current = false
-    void start()
-  }, [files, start])
-
   const pct = progress ? Math.round((progress.completed / Math.max(progress.total, 1)) * 100) : 0
 
   let readsLine = null
@@ -279,39 +227,8 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
     readsLine = sharedReads.calls + ' of ' + sharedReads.cap + ' shared free reads used today.'
   }
 
-  const sampleCards = []
-  for (const sample of SAMPLE_WORKSHEETS) {
-    sampleCards.push(
-      <li key={sample.slug}>
-        <button
-          type="button"
-          disabled={busy || loadingSample !== null}
-          onClick={() => void loadSample(sample.slug, true)}
-          className="card flex min-h-11 w-full touch-manipulation flex-col items-start gap-1 p-4 text-left hover:bg-wash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-60"
-        >
-          <span className="font-medium">{sample.title}</span>
-          <span className="text-sm text-muted">
-            {sample.questions} questions on {sample.pages === 1 ? 'one page' : sample.pages + ' pages'}
-          </span>
-        </button>
-      </li>,
-    )
-  }
-
   return (
     <div className="space-y-8">
-      <section id="samples" aria-labelledby="samples-heading">
-        <h2 id="samples-heading" className="text-pretty font-medium">
-          Start with a sample
-        </h2>
-        <p className="hint text-pretty">
-          These are already read, so they cost nothing and finish in under a minute. Pick one
-          and it starts.
-          {loadingSample !== null && ' Loading...'}
-        </p>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-3">{sampleCards}</ul>
-      </section>
-
       <section
         onDragOver={(event) => {
           event.preventDefault()
@@ -327,10 +244,10 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
         className={dropClass}
       >
         <h2 id="add-heading" className="text-pretty font-medium">
-          Or upload your own PDF
+          Enviar caderno de questões em PDF
         </h2>
         <p className="hint text-pretty">
-          Your own worksheet is read by the shared free model, which has a daily limit.
+          A extração de questões deste PDF exige um provedor de IA configurado. Os programas de Pomerode e GMBC já estão cadastrados em Editais.
           {readsLine && ' ' + readsLine}
         </p>
         <div className="mx-auto mt-4 flex max-w-xs flex-col gap-2">
@@ -351,7 +268,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
               htmlFor={filesId}
               className="btn btn-secondary cursor-pointer touch-manipulation peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent peer-disabled:cursor-not-allowed peer-disabled:opacity-60"
             >
-              Choose files
+              Selecionar PDFs
             </label>
           </div>
         </div>
@@ -360,7 +277,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
       {files.length > 0 && (
         <section aria-labelledby="selected-heading">
           <h2 id="selected-heading" className="text-sm font-medium">
-            Selected files
+            Arquivos selecionados
           </h2>
           <ul className="mt-2 divide-y divide-fg/20">
             {files.map((file, index) => (
@@ -381,7 +298,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
                   aria-label={'Remove ' + file.name}
                   className="btn-compact shrink-0 rounded px-1 text-sm text-muted hover:text-danger focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-50"
                 >
-                  Remove
+                  Remover
                 </button>
               </li>
             ))}
@@ -392,7 +309,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
       <section className="space-y-4">
         <div>
           <label className="label" htmlFor={titleId}>
-            Worksheet name
+            Nome do caderno ou prova
           </label>
           <input
             id={titleId}
@@ -400,7 +317,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
             type="text"
             autoComplete="off"
             spellCheck={false}
-            placeholder="Unit 4 Practice: Triangles…"
+            placeholder="Ex.: FURB — Assistente Legislativo"
             className="field"
             disabled={busy}
             value={title}
@@ -413,7 +330,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
 
         <div>
           <label className="label" htmlFor={subjectId}>
-            Subject
+            Concurso e disciplina
           </label>
           <select
             id={subjectId}
@@ -423,7 +340,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
             value={subject}
             onChange={(event) => setSubject(event.target.value)}
           >
-            <option value="">Not sure</option>
+            <option value="">Selecione o concurso ou disciplina</option>
             {subjects.map((group) => (
               <optgroup key={group.label} label={group.label}>
                 {group.options.map((option) => (
@@ -438,7 +355,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
 
         <fieldset>
           <legend className="label">
-            Pages
+            Páginas
           </legend>
 
           <div className="flex items-center gap-2">
@@ -452,11 +369,11 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
               className="field w-24 tabular-nums"
               disabled={busy}
               value={pageFrom}
-              aria-label="First page"
+              aria-label="Primeira página"
               onChange={(event) => setPageFrom(event.target.value)}
             />
             <span aria-hidden="true" className="text-muted">
-              to
+              até
             </span>
             <input
               id={pageToId}
@@ -468,7 +385,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
               className="field w-24 tabular-nums"
               disabled={busy}
               value={pageTo}
-              aria-label="Last page"
+              aria-label="Última página"
               onChange={(event) => setPageTo(event.target.value)}
             />
           </div>
@@ -476,7 +393,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
 
         <div className="rounded-2xl bg-tint-butter p-4">
           <label className="label" htmlFor={countId}>
-            Questions
+            Número de questões
           </label>
           <input
             id={countId}
@@ -510,7 +427,7 @@ export default function UploadClient({subjects, initialSample, sharedReads}: Pro
           <p className="text-pretty">{notice}</p>
           {pending && (
             <Link href={pending} className="mt-2 inline-block text-accent">
-              Add its questions
+              Adicionar as questões
             </Link>
           )}
         </div>
