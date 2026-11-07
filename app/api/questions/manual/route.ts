@@ -9,7 +9,8 @@ import {readJson} from '@/lib/api'
 import {db} from '@/lib/db'
 import {answerChoices, attempts, questions, questionTopics, topics, worksheets} from '@/lib/schema'
 import {STUDY_EXAMS} from '@/lib/studies-exams'
-import {organizeQuestionEvidence} from '@/lib/studies'
+import {processQuestionDeterministically} from '@/lib/studies'
+import {enrichQuestionWithOpenRouter} from '@/lib/ai/study-enrichment'
 
 const inputSchema = z.object({
   prompt: z.string().trim().min(5).max(12000),
@@ -88,6 +89,14 @@ export async function POST(request: Request) {
     }
   }
 
-  await organizeQuestionEvidence(db, {questionId: question.id, userId, prompt: data.prompt, correctAnswer: correct, markedAnswer: marked, subject: data.subject, examBoard: data.examBoard, examName: data.examName, legalReference: data.legalReference})
+  // The original question is already persisted. Enrichment is best-effort so an
+  // optional processing failure never prevents the student from studying.
+  try {
+    const evidence = {questionId: question.id, userId, prompt: data.prompt, choices: data.choices.map((choice) => ({label: choice.label.toUpperCase(), text: choice.text})), correctAnswer: correct, markedAnswer: marked, subject: data.subject, examBoard: data.examBoard, examName: data.examName, legalReference: data.legalReference, professorComment: data.professorComment, sourceNumber: data.questionNumber}
+    await processQuestionDeterministically(db, evidence)
+    await enrichQuestionWithOpenRouter(db, evidence)
+  } catch (error) {
+    console.error('[studies] deterministic enrichment failed for question ' + question.id + ':', error)
+  }
   return NextResponse.json({questionId: question.id}, {status: 201})
 }
