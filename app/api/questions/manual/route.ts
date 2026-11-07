@@ -7,7 +7,8 @@ import {z} from 'zod'
 import {auth} from '@/auth'
 import {readJson} from '@/lib/api'
 import {db} from '@/lib/db'
-import {answerChoices, attempts, questions, worksheets} from '@/lib/schema'
+import {answerChoices, attempts, questions, questionTopics, topics, worksheets} from '@/lib/schema'
+import {STUDY_EXAMS} from '@/lib/studies-exams'
 import {organizeQuestionEvidence} from '@/lib/studies'
 
 const inputSchema = z.object({
@@ -58,6 +59,28 @@ export async function POST(request: Request) {
   if (marked) {
     const choice = createdChoices.find((row) => row.label === marked)
     await db.insert(attempts).values({userId, questionId: question.id, selectedChoiceId: choice?.id || null, outcome: marked === correct ? 'correct' : 'wrong', source: 'markup'})
+  }
+
+
+  // Associa a disciplina oficial do currículo apenas quando concurso e matéria
+  // correspondem exatamente aos dados cadastrados. Não inventa tópico granular.
+  const normalize = (value: string) => value.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase().trim()
+  const examName = normalize(data.examName || '')
+  const matchedExam = STUDY_EXAMS.find((exam) => exam.id === 'pomerode-2026'
+    ? examName.includes('pomerode')
+    : examName.includes('balneario camboriu') || examName.includes('gmbc'))
+  const matchedSubject = matchedExam?.disciplinas.findIndex(
+    (entry) => normalize(entry.disciplina) === normalize(data.subject || ''),
+  ) ?? -1
+  if (matchedExam && matchedSubject >= 0) {
+    const slug = matchedExam.id + '.disc-' + (matchedSubject + 1)
+    const found = await db.select({id: topics.id}).from(topics).where(eq(topics.slug, slug)).limit(1)
+    if (found[0]) {
+      await db.insert(questionTopics).values({
+        questionId: question.id, topicId: found[0].id, confidence: 1,
+        assignedBy: 'user', isPrimary: true,
+      }).onConflictDoNothing()
+    }
   }
 
   await organizeQuestionEvidence(db, {questionId: question.id, userId, prompt: data.prompt, correctAnswer: correct, markedAnswer: marked, subject: data.subject, examBoard: data.examBoard, examName: data.examName, legalReference: data.legalReference})
