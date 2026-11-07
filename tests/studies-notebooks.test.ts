@@ -14,13 +14,14 @@ test('questão vincula conhecimento e rascunho, não mescla usuários e preserva
   const otherId = await makeUser(db)
   const worksheetId = await makeWorksheet(db, userId)
   const [question] = await db.insert(questions).values({userId, worksheetId, ordinal: 1, promptText: 'Qual é a regra?', questionType: 'multiple_choice', correctAnswer: 'A'}).returning({id: questions.id})
-  const input = {questionId: question.id, userId, prompt: 'Qual é a regra?', correctAnswer: 'A', subject: 'Direito', professorComment: 'A regra é expressa no comentário.', choices: [{label: 'A', text: 'Correta'}, {label: 'B', text: 'Incorreta'}, {label: 'C', text: 'Outra incorreta'}]}
+  const input = {questionId: question.id, userId, prompt: 'Qual é a regra?', correctAnswer: 'A', subject: 'Direito', professorComment: 'A regra é expressa no comentário.', communityComments: ['Explicação da comunidade.'], choices: [{label: 'A', text: 'Correta'}, {label: 'B', text: 'Incorreta'}, {label: 'C', text: 'Outra incorreta'}]}
   await processQuestionDeterministically(db, input)
   const items = await db.select().from(knowledgeItems).where(eq(knowledgeItems.userId, userId))
   const correct = items.find((item) => item.kind === 'correct_rule')!
   const trap = items.filter((item) => item.kind === 'trap')
   assert.equal(trap.length, 1)
   assert.match(trap[0].body, /Alternativas incorretas identificadas pelo gabarito/)
+  assert.match(trap[0].body, /Comentário da comunidade \(não verificado automaticamente\):\nExplicação da comunidade/)
   await db.update(knowledgeItems).set({status: 'verified'}).where(eq(knowledgeItems.id, correct.id))
   await processQuestionDeterministically(db, input)
   assert.equal((await db.select().from(knowledgeItems).where(and(eq(knowledgeItems.id, correct.id), eq(knowledgeItems.status, 'verified')))).length, 1)
@@ -29,7 +30,8 @@ test('questão vincula conhecimento e rascunho, não mescla usuários e preserva
   assert.equal(cards.length, 1)
   assert.equal(cards[0].knowledgeItemId, correct.id)
   assert.equal(cards[0].deck, 'Direito')
-  assert.equal(cards[0].back, input.professorComment)
+  assert.match(cards[0].back, /Comentário do professor \(não verificado\)/)
+  assert.ok(cards[0].back.includes(input.professorComment))
   assert.equal((await db.select().from(flashcards).where(eq(flashcards.userId, otherId))).length, 0)
 })
 

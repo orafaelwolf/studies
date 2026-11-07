@@ -95,7 +95,7 @@ export async function POST(request: Request) {
   // The original question is already persisted. Enrichment is best-effort so an
   // optional processing failure never prevents the student from studying.
   try {
-    const evidence = {questionId: question.id, userId, prompt: data.prompt, choices: data.choices.map((choice) => ({label: choice.label.toUpperCase(), text: choice.text})), correctAnswer: correct, markedAnswer: marked, subject: data.subject, examBoard: data.examBoard, examName: data.examName, legalReference: data.legalReference, professorComment: data.professorComment, sourceNumber: data.questionNumber, answerOrigin: data.importSource?.answerOrigin}
+    const evidence = {questionId: question.id, userId, prompt: data.prompt, choices: data.choices.map((choice) => ({label: choice.label.toUpperCase(), text: choice.text})), correctAnswer: correct, markedAnswer: marked, subject: data.subject, examBoard: data.examBoard, examName: data.examName, legalReference: data.legalReference, professorComment: data.professorComment, communityComments: data.importSource?.comments.filter((comment) => comment.kind === 'user').map((comment) => comment.text), sourceNumber: data.questionNumber, answerOrigin: data.importSource?.answerOrigin}
     await processQuestionDeterministically(db, evidence)
     await enrichQuestionWithOpenRouter(db, evidence)
   } catch (error) {

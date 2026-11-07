@@ -4,6 +4,30 @@ import {readFileSync} from 'node:fs'
 
 import {parseQuestionText} from '@/lib/questions/parser'
 
+test('extrai letras isoladas em linhas próprias como na cópia do Qconcursos', () => {
+  const text = 'Considerando a regência dos verbos, assinale a alternativa CORRETA:\n\nA\nOs servidores obedeceram as determinações.\n\nB\nOs servidores assistiram a reunião.\n\nC\nOs servidores assistiram à reunião.\n\nD\nOs servidores obedeceram as determinações da comissão.\n\nE\nOs servidores obedeceram às determinações.\n\n- Comentários (1)\nProfessora\n07 de Novembro de 2026 às 13:14\nGabarito: E\nA alternativa correta é a letra E.'
+  const result = parseQuestionText(text)
+  assert.equal(result.prompt, 'Considerando a regência dos verbos, assinale a alternativa CORRETA:')
+  assert.deepEqual(result.choices.map((choice) => choice.label), ['A', 'B', 'C', 'D', 'E'])
+  assert.equal(result.choices[4].text, 'Os servidores obedeceram às determinações.')
+  assert.equal(result.correctAnswer, 'E')
+  assert.equal(result.answerOrigin, 'comment')
+  assert.equal(result.markedAnswer, null)
+})
+
+test('uma letra isolada sem sequência de alternativas não vira uma opção', () => {
+  const result = parseQuestionText('Analise o texto.\nA\npalavra aparece no começo da frase.')
+  assert.equal(result.choices.length, 0)
+  assert.equal(result.correctAnswer, null)
+})
+
+test('alternativas isoladas não fazem o parser inventar um gabarito ou resposta marcada', () => {
+  const result = parseQuestionText('Assinale a correta:\nA\nPrimeira alternativa.\nB\nSegunda alternativa.\nC\nTerceira alternativa.\nD\nQuarta alternativa.\nE\nQuinta alternativa.')
+  assert.equal(result.choices.length, 5)
+  assert.equal(result.correctAnswer, null)
+  assert.equal(result.markedAnswer, null)
+})
+
 test('colagem real Q4443531 sem cabeçalhos artificiais', () => {
   const input = readFileSync('tests/fixtures/q4443531.txt', 'utf8')
   const result = parseQuestionText(input)

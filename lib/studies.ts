@@ -12,6 +12,7 @@ export type StudyEvidence = {
   markedAnswer?: string | null; subject?: string | null; examBoard?: string | null; examName?: string | null
   legalReference?: string | null; professorComment?: string | null; sourceNumber?: number | null
   answerOrigin?: string | null
+  communityComments?: string[]
 }
 
 export function stableHash(...parts: Array<string | null | undefined>) {
@@ -39,7 +40,7 @@ async function saveItem(db: Db, evidence: StudyEvidence, kind: 'correct_rule' | 
 // Essential mode: only records facts supplied by the question, never a made-up explanation.
 export async function processQuestionDeterministically(db: Db, evidence: StudyEvidence) {
   const correct = evidence.choices.find((choice) => choice.label === evidence.correctAnswer)
-  const comment = evidence.professorComment ? '\n\nComentário do professor (material fornecido pelo usuário, não verificado automaticamente):\n' + evidence.professorComment : ''
+  const comment = [evidence.professorComment ? '\n\nComentário do professor (material fornecido pelo usuário, não verificado automaticamente):\n' + evidence.professorComment : '', ...(evidence.communityComments || []).map((text) => '\n\nComentário da comunidade (não verificado automaticamente):\n' + text)].join('')
   const identifiers = [evidence.examBoard, evidence.examName, evidence.sourceNumber ? 'Questão ' + evidence.sourceNumber : null].filter(Boolean).join(' · ')
   const correctBody = (evidence.answerOrigin === 'comment' ? 'Gabarito informado por comentarista, não confirmado oficialmente' : 'Alternativa correta') + ' (' + evidence.correctAnswer + '):\n' + (correct?.text || 'Texto da alternativa indisponível.') + (identifiers ? '\n\nOrigem: ' + identifiers : '') + comment
   const correctId = await saveItem(db, evidence, 'correct_rule', 'Resposta correta' + (identifiers ? ' · ' + identifiers : ''), correctBody)
@@ -52,13 +53,14 @@ export async function processQuestionDeterministically(db: Db, evidence: StudyEv
     ids.push(await saveItem(db, evidence, 'trap', qualification, qualification + ':\n' + incorrect.map((choice) => choice.label + ': ' + choice.text).join('\n') + personal + comment))
   }
 
-  const legalText = [evidence.legalReference, evidence.prompt, evidence.professorComment, ...evidence.choices.map((choice) => choice.text)].filter(Boolean).join('\n')
+  const legalText = [evidence.legalReference, evidence.prompt, evidence.professorComment, ...(evidence.communityComments || []), ...evidence.choices.map((choice) => choice.text)].filter(Boolean).join('\n')
   for (const reference of extractLegalReferences(legalText)) ids.push(await saveItem(db, evidence, 'law_reference', 'Referência extraída: ' + reference, 'Referência extraída do material fornecido: ' + reference + '. Pendente de conferência em fonte oficial.', reference))
 
   if (evidence.examBoard) ids.push(await saveItem(db, evidence, 'board_pattern', 'Evidência de cobrança: ' + evidence.examBoard, 'Uma questão da banca ' + evidence.examBoard + (evidence.examName ? ' no concurso ' + evidence.examName : '') + '. Incidência observada apenas na amostra pessoal; não representa distribuição oficial.'))
 
-  const front = evidence.professorComment ? 'Qual explicação foi fornecida para ' + (evidence.subject || 'a questão') + '?' : evidence.legalReference ? 'Qual dispositivo foi mencionado na questão?' : (evidence.answerOrigin === 'comment' ? 'Qual alternativa foi indicada pelo comentarista' : 'Qual alternativa estava correta') + (identifiers ? ' em ' + identifiers : '') + '?'
-  const back = evidence.professorComment || evidence.legalReference || correct?.text || 'Gabarito informado: ' + evidence.correctAnswer
+  const referenceComment = evidence.professorComment || evidence.communityComments?.[0]
+  const front = referenceComment ? 'Qual explicação foi fornecida para ' + (evidence.subject || 'a questão') + '?' : evidence.legalReference ? 'Qual dispositivo foi mencionado na questão?' : (evidence.answerOrigin === 'comment' ? 'Qual alternativa foi indicada pelo comentarista' : 'Qual alternativa estava correta') + (identifiers ? ' em ' + identifiers : '') + '?'
+  const back = referenceComment ? (evidence.professorComment ? 'Comentário do professor (não verificado):\n' : 'Comentário da comunidade (não verificado):\n') + referenceComment : evidence.legalReference || correct?.text || 'Gabarito informado: ' + evidence.correctAnswer
   if (back.trim()) await db.insert(flashcards).values({userId: evidence.userId, knowledgeItemId: correctId, front, back, deck: evidence.subject || 'Geral', topic: evidence.subject || null, contentHash: stableHash('flashcard', front, back), dueAt: new Date()}).onConflictDoNothing()
   return {knowledgeItemIds: ids, flashcardCreated: Boolean(back.trim())}
 }

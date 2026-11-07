@@ -116,6 +116,21 @@ export function parseQuestionText(source: string): ParsedQuestion {
   const commentIndex = lines.findIndex((line) => COMMENT_HEADING.test(line))
   const mainLines = commentIndex < 0 ? lines : lines.slice(0, commentIndex)
   const commentSection = commentIndex < 0 ? [] : lines.slice(commentIndex + 1)
+  // Browser copies from Qconcursos often put the label in its own block.
+  // Require an ordered sequence starting at A so an isolated letter in prose
+  // is not silently promoted to an alternative.
+  const separateLabels = mainLines.flatMap((line, index) => /^[A-E]$/.test(line) ? [{label: line, index}] : [])
+  const start = separateLabels.findIndex((entry) => entry.label === 'A')
+  const sequentialLabels: typeof separateLabels = []
+  if (start !== -1) {
+    for (const entry of separateLabels.slice(start)) {
+      if (entry.label !== String.fromCharCode(65 + sequentialLabels.length)) break
+      const nextLine = mainLines.slice(entry.index + 1).find((line) => line.length > 0)
+      if (!nextLine || /^[A-E]$/.test(nextLine) || HEADER.test(nextLine) || NOISE.test(nextLine)) break
+      sequentialLabels.push(entry)
+    }
+  }
+  const separateChoiceIndexes = new Set(sequentialLabels.length >= 2 ? sequentialLabels.map((entry) => entry.index) : [])
   const answerPattern = /^(?:gabarito|resposta correta|alternativa correta)\s*:\s*(?:alternativa\s*)?\(?(CERTO|ERRADO|[A-E])\)?\b/i
   const explicitAnswer = answer(mainLines, answerPattern)
   const comments = splitComments(commentSection)
@@ -137,11 +152,11 @@ export function parseQuestionText(source: string): ParsedQuestion {
   let sawChoice = false
   let inAssociatedText = false
 
-  for (const line of mainLines) {
+  for (const [index, line] of mainLines.entries()) {
     if (!line) continue
     if (/^texto associado\s*:?$/i.test(line)) { inAssociatedText = true; continue }
     if (/^enunciado\s*:?$/i.test(line)) { inAssociatedText = false; continue }
-    if (inAssociatedText && (/^(?:alternativas\s*:?|certo|errado)$/i.test(line) || choiceAt(line))) {
+    if (inAssociatedText && (/^(?:alternativas\s*:?|certo|errado)$/i.test(line) || choiceAt(line) || separateChoiceIndexes.has(index))) {
       promptLines.push(...associatedLines)
       associatedLines.length = 0
       inAssociatedText = false
@@ -169,6 +184,11 @@ export function parseQuestionText(source: string): ParsedQuestion {
     if (HEADER.test(line)) continue
     if (/^(?:resultado|resultado da tentativa)\s*:/i.test(line)) continue
     if (/^(?:prova|cargo)\s*:/i.test(line)) continue
+    if (separateChoiceIndexes.has(index)) {
+      activeChoice = {label: line, text: ''}
+      choices.push(activeChoice); sawChoice = true
+      continue
+    }
     if (/^(?:certo|errado)$/i.test(line)) {
       const label = line.toUpperCase()
       activeChoice = {label, text: label === 'CERTO' ? 'Certo' : 'Errado'}
