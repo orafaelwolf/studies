@@ -1,0 +1,626 @@
+'use client'
+
+import {useCallback, useEffect, useId, useState} from 'react'
+import {useRouter} from 'next/navigation'
+
+import {
+  clearMarkupDraft,
+  fetchJson,
+  readMarkupDraft,
+  writeMarkupDraft,
+} from '@/lib/client/http'
+import {reflowText} from '@/lib/questions/shape'
+
+export type Outcome = 'correct' | 'unsure' | 'wrong'
+
+export type MarkableQuestion = {
+  id: string
+  ordinal: number
+  promptText: string
+  questionType: string
+  correctAnswer: string | null
+  choices: {id: string; label: string; text: string}[]
+}
+
+type Props = {
+  worksheetId: string
+  questions: MarkableQuestion[]
+}
+
+const OUTCOMES: {value: Outcome; label: string; hint: string; key: string}[] = [
+  {value: 'correct', label: 'Got it', hint: 'Right, and I knew it', key: '1'},
+  {value: 'unsure', label: 'Unsure', hint: 'Right, but I guessed', key: '2'},
+  {value: 'wrong', label: 'Missed it', hint: 'Wrong answer', key: '3'},
+]
+
+const CHOICE_BASE =
+  'flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2 text-sm touch-manipulation has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent '
+
+function choiceClass(active: boolean) {
+  if (active) return CHOICE_BASE + 'border-accent bg-accent/10'
+
+  return CHOICE_BASE + 'border-rule hover:border-accent hover:bg-accent/5'
+}
+
+export default function MarkupClient({worksheetId, questions}: Props) {
+  const router = useRouter()
+
+  const [phase, setPhase] = useState<'outcomes' | 'answers'>('outcomes')
+  const [outcomes, setOutcomes] = useState<Record<string, Outcome>>({})
+  const [answers, setAnswers] = useState<Record<string, string>>({})
+  const [cursor, setCursor] = useState(0)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [restored, setRestored] = useState(false)
+
+  useEffect(() => {
+    const draft = readMarkupDraft(worksheetId)
+    if (Object.keys(draft.outcomes).length === 0) return
+
+    /* eslint-disable react-hooks/set-state-in-effect */
+    setOutcomes(draft.outcomes)
+    setAnswers(draft.answers)
+    setCursor(Math.min(draft.cursor, questions.length - 1))
+    setRestored(true)
+    /* eslint-enable react-hooks/set-state-in-effect */
+  }, [worksheetId, questions.length])
+
+  const marked = Object.keys(outcomes).length
+
+  useEffect(() => {
+    if (marked === 0) return
+    writeMarkupDraft(worksheetId, {outcomes, answers, cursor})
+  }, [worksheetId, outcomes, answers, cursor, marked])
+
+  useEffect(() => {
+    if (marked === 0 || submitting) return
+    const onBeforeUnload = (event: BeforeUnloadEvent) => event.preventDefault()
+    window.addEventListener('beforeunload', onBeforeUnload)
+    return () => window.removeEventListener('beforeunload', onBeforeUnload)
+  }, [marked, submitting])
+
+  const currentQuestion = questions[cursor]
+
+  const unresolved = []
+  for (const question of questions) {
+    const outcome = outcomes[question.id]
+    if (outcome === 'wrong' || outcome === 'unsure') unresolved.push(question)
+  }
+
+  function answerFor(questionId: string) {
+    const value = answers[questionId]
+    if (!value) return ''
+
+    return value
+  }
+
+  const mark = useCallback(
+    (questionId: string, outcome: Outcome, index: number) => {
+      setOutcomes((current) => ({...current, [questionId]: outcome}))
+      setCursor(Math.min(index + 1, questions.length - 1))
+    },
+    [questions.length],
+  )
+
+  useEffect(() => {
+    if (phase !== 'outcomes') return
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.metaKey || event.ctrlKey || event.altKey) return
+      const target = event.target as HTMLElement | null
+      if (target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) return
+
+      const choice = OUTCOMES.find((outcome) => outcome.key === event.key)
+      const question = questions[cursor]
+      if (!choice || !question) return
+      if (Object.keys(outcomes).length >= questions.length) return
+
+      event.preventDefault()
+      mark(question.id, choice.value, cursor)
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [phase, cursor, questions, mark, outcomes])
+
+  async function submit() {
+    setSubmitting(true)
+    setError(null)
+
+    const marks = []
+
+    for (const question of questions) {
+      if (!outcomes[question.id]) continue
+
+      const answer = answers[question.id]
+
+      let choiceId: string | null = null
+      for (const option of question.choices) {
+        if (option.id === answer) choiceId = option.id
+      }
+
+      let freeTextAnswer: string | null = null
+      if (!choiceId && answer) freeTextAnswer = answer
+
+      marks.push({
+        questionId: question.id,
+        outcome: outcomes[question.id],
+        selectedChoiceId: choiceId,
+        freeTextAnswer: freeTextAnswer,
+      })
+    }
+
+    try {
+      const response = await fetchJson('/api/worksheets/' + worksheetId + '/attempts', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({marks}),
+      })
+      const body = (await response.json()) as {next?: string; error?: string}
+
+      if (!response.ok && response.status !== 409) {
+        let message = 'Could not save'
+        if (body.error) message = body.error
+
+        throw new Error(message)
+      }
+
+      clearMarkupDraft(worksheetId)
+
+      let next = '/dashboard'
+      if (body.next) next = body.next
+
+      router.push(next)
+    } catch (cause) {
+      setSubmitting(false)
+      setError(
+        cause instanceof Error
+          ? cause.message + '. Your marks are still here. Try again.'
+          : 'Could not save your marks. Try again.',
+      )
+    }
+  }
+
+  if (phase === 'answers') {
+    return (
+      <div className="space-y-6">
+        <div className="border-b border-fg/20 pb-3">
+          <h2 className="text-sm font-medium">
+            What did you put on the{' '}
+            <span className="tabular-nums">{unresolved.length}</span> you missed
+            or guessed?
+          </h2>
+          <p className="hint">
+            Optional, but it lets the explanation address your actual mistake
+            instead of just re-solving the problem.
+          </p>
+        </div>
+
+        <ul className="divide-y divide-fg/20">
+          {unresolved.map((question) => (
+            <li key={question.id} className="py-4 first:pt-0">
+              <p className="text-sm">
+                <span className="tabular-nums text-muted">{question.ordinal}. </span>
+                <span className="whitespace-pre-line">
+                  {reflowText(question.promptText)}
+                </span>
+              </p>
+
+              {question.choices.length > 0 ? (
+                <fieldset className="mt-3">
+                  <legend className="sr-only">
+                    Your answer for question {question.ordinal}
+                  </legend>
+                  <div className="flex flex-wrap gap-2">
+                    {question.choices.map((choice) => {
+                      const active = answers[question.id] === choice.id
+                      return (
+                        <label
+                          key={choice.id}
+                          className={choiceClass(active)}
+                        >
+                          <input
+                            type="radio"
+                            name={'answer-' + question.id}
+                            className="sr-only"
+                            checked={active}
+                            onChange={() =>
+                              setAnswers((current) => ({
+                                ...current,
+                                [question.id]: choice.id,
+                              }))
+                            }
+                          />
+                          <span className="font-medium">{choice.label}</span>
+                          <span className="max-w-40 truncate text-muted">
+                            {choice.text}
+                          </span>
+                        </label>
+                      )
+                    })}
+                  </div>
+                </fieldset>
+              ) : (
+                <div className="mt-3">
+                  <label className="label" htmlFor={'answer-' + question.id}>
+                    Your answer
+                  </label>
+                  <input
+                    id={'answer-' + question.id}
+                    type="text"
+                    autoComplete="off"
+                    className="field"
+                    value={answerFor(question.id)}
+                    onChange={(event) =>
+                      setAnswers((current) => ({
+                        ...current,
+                        [question.id]: event.target.value,
+                      }))
+                    }
+                  />
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+
+        {error && (
+          <p
+            role="alert"
+            className="rounded-xl bg-danger/10 px-3 py-2 text-sm text-danger"
+          >
+            {error}
+          </p>
+        )}
+
+        <div className="flex flex-col gap-3 sm:flex-row-reverse">
+          <button
+            type="button"
+            className="btn btn-primary touch-manipulation sm:w-auto sm:px-6"
+            disabled={submitting}
+            onClick={() => void submit()}
+          >
+            {submitting ? 'Saving…' : 'Save and finish'}
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary touch-manipulation sm:w-auto sm:px-6"
+            disabled={submitting}
+            onClick={() => setPhase('outcomes')}
+          >
+            Back
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="inset-safe-top -mx-6 bg-bg px-6 py-3">
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="text-sm font-medium">
+            <span className="tabular-nums">{marked}</span> of{' '}
+            <span className="tabular-nums">{questions.length}</span> marked
+          </p>
+          <p className="hidden text-xs text-muted sm:block">
+            Keys <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> to mark quickly
+          </p>
+        </div>
+        <div
+          role="progressbar"
+          aria-valuenow={marked}
+          aria-valuemin={0}
+          aria-valuemax={questions.length}
+          aria-label="Questions marked"
+          className="mt-2 h-1 overflow-hidden rounded bg-wash-strong"
+        >
+          <div
+            className="h-full bg-accent"
+            style={{width: (marked / questions.length) * 100 + '%'}}
+          />
+        </div>
+      </div>
+
+      {marked >= questions.length ? (
+        <div className="text-center">
+          <p className="font-medium">
+            All <span className="tabular-nums">{questions.length}</span> marked.
+          </p>
+          <p className="hint">Ready to continue.</p>
+        </div>
+      ) : (
+        currentQuestion && (
+          <div className="border-t-2 border-accent pt-4">
+            <p className="text-sm text-muted">
+              Question <span className="tabular-nums">{currentQuestion.ordinal}</span> of{' '}
+              <span className="tabular-nums">{questions.length}</span>
+            </p>
+            <p className="mt-2 whitespace-pre-line">
+              {reflowText(currentQuestion.promptText)}
+            </p>
+
+            <fieldset className="mt-4">
+              <legend className="sr-only">
+                Result for question {currentQuestion.ordinal}
+              </legend>
+              <div className="grid grid-cols-3 gap-2">
+                {OUTCOMES.map((outcome) => (
+                  <button
+                    key={outcome.value}
+                    type="button"
+                    title={outcome.hint}
+                    className="flex min-h-11 flex-col items-center card px-2 py-3 text-center text-sm touch-manipulation hover:border-accent hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                    onClick={() => mark(currentQuestion.id, outcome.value, cursor)}
+                  >
+                    {outcome.label}
+                    <span className="text-xs font-normal text-muted">{outcome.hint}</span>
+                  </button>
+                ))}
+              </div>
+            </fieldset>
+
+            {cursor > 0 && (
+              <button
+                type="button"
+                className="mt-4 text-sm text-muted hover:text-fg"
+                onClick={() => setCursor((index) => Math.max(0, index - 1))}
+              >
+                Back
+              </button>
+            )}
+          </div>
+        )
+      )}
+
+      {error && (
+        <p
+          role="alert"
+          className="rounded-xl bg-danger/10 px-3 py-2 text-sm text-danger"
+        >
+          {error}
+        </p>
+      )}
+
+      {restored && (
+        <div
+          role="status"
+          className="flex flex-wrap items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm"
+        >
+          <span>Picked up where you left off on this device.</span>
+          <button
+            type="button"
+            className="btn-compact rounded px-1 text-sm text-muted hover:text-fg"
+            onClick={() => {
+              clearMarkupDraft(worksheetId)
+              setOutcomes({})
+              setAnswers({})
+              setCursor(0)
+              setPhase('outcomes')
+              setRestored(false)
+            }}
+          >
+            Start again
+          </button>
+        </div>
+      )}
+
+      <p aria-live="polite" className="sr-only">
+        {marked} of {questions.length}{' '}
+        {questions.length === 1 ? 'question' : 'questions'} marked
+      </p>
+
+      {marked >= questions.length && (
+        <div className="flex flex-col gap-3 sm:flex-row-reverse">
+          {unresolved.length > 0 ? (
+            <button
+              type="button"
+              className="btn btn-primary touch-manipulation sm:w-auto sm:px-6"
+              onClick={() => setPhase('answers')}
+            >
+              Next: what you put
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-primary touch-manipulation sm:w-auto sm:px-6"
+              disabled={submitting}
+              onClick={() => void submit()}
+            >
+              {submitting ? 'Saving…' : 'Save and finish'}
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export type MarkedQuestion = {
+  id: string
+  ordinal: number
+  promptText: string
+  outcome: Outcome
+  selectedChoiceId: string | null
+  choices: {id: string; label: string; text: string}[]
+}
+
+const CORRECTION_OUTCOMES: {value: Outcome; label: string}[] = [
+  {value: 'correct', label: 'Got it'},
+  {value: 'unsure', label: 'Unsure'},
+  {value: 'wrong', label: 'Missed it'},
+]
+
+export function CorrectionsClient({
+  worksheetId,
+  questions,
+}: {
+  worksheetId: string
+  questions: MarkedQuestion[]
+}) {
+  const [marks, setMarks] = useState(() => {
+    const starting: Record<
+      string,
+      {outcome: Outcome; selectedChoiceId: string | null}
+    > = {}
+
+    for (const question of questions) {
+      starting[question.id] = {
+        outcome: question.outcome,
+        selectedChoiceId: question.selectedChoiceId,
+      }
+    }
+
+    return starting
+  })
+
+  const [saving, setSaving] = useState<string | null>(null)
+  const [saved, setSaved] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const groupId = useId()
+
+  function selectedFor(mark: {selectedChoiceId: string | null}) {
+    if (!mark.selectedChoiceId) return ''
+
+    return mark.selectedChoiceId
+  }
+
+  async function correct(
+    questionId: string,
+    next: {outcome: Outcome; selectedChoiceId: string | null},
+  ) {
+    const previous = marks[questionId]
+
+    setMarks((current) => ({...current, [questionId]: next}))
+    setSaving(questionId)
+    setError(null)
+    setSaved(null)
+
+    try {
+      const response = await fetchJson('/api/worksheets/' + worksheetId + '/attempts', {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({questionId, ...next}),
+      })
+
+      if (!response.ok) {
+        let message = 'That change did not save.'
+
+        try {
+          const detail = (await response.json()) as {error?: string}
+          if (detail.error) message = detail.error
+        } catch {
+          message = 'That change did not save.'
+        }
+
+        throw new Error(message)
+      }
+
+      setSaved(questionId)
+    } catch (cause) {
+      setMarks((current) => ({...current, [questionId]: previous}))
+      setError((cause as Error).message)
+    } finally {
+      setSaving(null)
+    }
+  }
+
+  return (
+    <div className="space-y-4">
+      {error && (
+        <p
+          role="alert"
+          className="rounded-xl bg-danger/10 px-3 py-2 text-sm text-danger"
+        >
+          {error}
+        </p>
+      )}
+
+      <ul className="divide-y divide-fg/20">
+        {questions.map((question) => {
+          const mark = marks[question.id]
+          const wantsAnswer = mark.outcome === 'wrong' || mark.outcome === 'unsure'
+
+          return (
+            <li key={question.id} className="py-4 first:pt-0">
+              <p className="text-sm text-pretty">
+                <span className="text-muted tabular-nums">{question.ordinal}.</span>{' '}
+                {question.promptText}
+              </p>
+
+              <fieldset className="mt-3">
+                <legend className="sr-only">
+                  How you did on question {question.ordinal}
+                </legend>
+                <div className="grid grid-cols-3 gap-2">
+                  {CORRECTION_OUTCOMES.map((outcome) => {
+                    const isCurrent = mark.outcome === outcome.value
+
+                    return (
+                      <button
+                        key={outcome.value}
+                        type="button"
+                        aria-pressed={isCurrent}
+                        disabled={saving === question.id}
+                        className={
+                          isCurrent
+                            ? 'min-h-11 rounded-xl border border-accent bg-accent/10 px-2 py-2 text-sm font-medium touch-manipulation focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent'
+                            : 'min-h-11 card px-2 py-2 text-sm touch-manipulation hover:border-accent hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-60'
+                        }
+                        onClick={() =>
+                          void correct(question.id, {
+                            outcome: outcome.value,
+                            selectedChoiceId:
+                              outcome.value === 'correct' ? null : mark.selectedChoiceId,
+                          })
+                        }
+                      >
+                        {outcome.label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </fieldset>
+
+              {wantsAnswer && question.choices.length > 0 && (
+                <div className="mt-3">
+                  <label
+                    className="label"
+                    htmlFor={groupId + '-' + question.id}
+                  >
+                    What you put
+                  </label>
+                  <select
+                    id={groupId + '-' + question.id}
+                    className="field"
+                    disabled={saving === question.id}
+                    value={selectedFor(mark)}
+                    onChange={(event) =>
+                      void correct(question.id, {
+                        outcome: mark.outcome,
+                        selectedChoiceId: event.target.value || null,
+                      })
+                    }
+                  >
+                    <option value="">Not saying</option>
+                    {question.choices.map((choice) => (
+                      <option key={choice.id} value={choice.id}>
+                        {choice.label}. {choice.text}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              {saved === question.id && (
+                <p role="status" className="hint">
+                  Saved.
+                </p>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
