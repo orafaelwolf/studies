@@ -1,0 +1,135 @@
+import {NextResponse} from 'next/server'
+import {z} from 'zod'
+
+import {
+  CLOUD_PROVIDERS,
+  deleteCredential,
+  getCredentialSummary,
+  sealApiKey,
+  verifyCloudKey,
+} from '@/lib/ai/resolve'
+import {CREDENTIAL_LIMIT, guardRateLimit, readJson} from '@/lib/api'
+import {auth} from '@/auth'
+import {db} from '@/lib/db'
+import {userAiCredentials} from '@/lib/schema'
+
+const bodySchema = z.object({
+  provider: z.enum(CLOUD_PROVIDERS),
+  apiKey: z.string().trim().min(10).max(400),
+  model: z.string().trim().max(120).nullish(),
+})
+
+export async function GET() {
+  const session = await auth()
+  if (!session || !session.user || !session.user.id) {
+    return NextResponse.json({error: 'Unauthorized'}, {status: 401})
+  }
+
+  return NextResponse.json({credentials: await getCredentialSummary(db, session.user.id)})
+}
+
+export async function POST(request: Request) {
+  const session = await auth()
+  if (!session || !session.user || !session.user.id) {
+    return NextResponse.json({error: 'Unauthorized'}, {status: 401})
+  }
+
+  const parsed = bodySchema.safeParse(await readJson(request))
+  if (!parsed.success) {
+    return NextResponse.json({error: 'Check the values and try again.'}, {status: 400})
+  }
+
+  const userId = session.user.id
+  const input = parsed.data
+
+  const limited = await guardRateLimit(
+    db,
+    CREDENTIAL_LIMIT,
+    'user:' + userId,
+    'Too many credential changes. Try again shortly.',
+  )
+  if (limited) return limited
+
+  let sealed
+  try {
+    sealed = sealApiKey(input.apiKey)
+  } catch {
+    return NextResponse.json(
+      {error: 'Encryption is not configured on the server.'},
+      {status: 500},
+    )
+  }
+
+  const verdict = await verifyCloudKey(input.provider, input.apiKey)
+
+  if (verdict.status === 'rejected') {
+    return NextResponse.json({error: verdict.reason}, {status: 400})
+  }
+
+  const verified = verdict.status === 'ok'
+
+  let verifiedAt = null
+  if (verified) verifiedAt = new Date()
+
+  let model = null
+  if (input.model) model = input.model
+
+  await db
+    .insert(userAiCredentials)
+    .values({
+      userId,
+      provider: input.provider,
+      verifiedAt,
+      encryptedKey: sealed.ciphertext,
+      keyIv: sealed.iv,
+      keyAuthTag: sealed.authTag,
+      keyLast4: sealed.last4,
+      modelName: model,
+      visionModelName: model,
+    })
+    .onConflictDoUpdate({
+      target: [userAiCredentials.userId, userAiCredentials.provider],
+      set: {
+        encryptedKey: sealed.ciphertext,
+        keyIv: sealed.iv,
+        keyAuthTag: sealed.authTag,
+        keyLast4: sealed.last4,
+        modelName: model,
+        visionModelName: model,
+        verifiedAt,
+        updatedAt: new Date(),
+      },
+    })
+
+  let message = undefined
+  if (!verified) {
+    message = 'Saved, but ' + input.provider + ' could not be reached to check it.'
+  }
+
+  return NextResponse.json({ok: true, last4: sealed.last4, verified, message})
+}
+
+export async function DELETE(request: Request) {
+  const session = await auth()
+  if (!session || !session.user || !session.user.id) {
+    return NextResponse.json({error: 'Unauthorized'}, {status: 401})
+  }
+
+  const provider = new URL(request.url).searchParams.get('provider')
+  const deletable = z.enum(CLOUD_PROVIDERS).safeParse(provider)
+  if (!deletable.success) {
+    return NextResponse.json({error: 'Unknown provider'}, {status: 400})
+  }
+
+  const limited = await guardRateLimit(
+    db,
+    CREDENTIAL_LIMIT,
+    'user:' + session.user.id,
+    'Too many credential changes. Try again shortly.',
+  )
+  if (limited) return limited
+
+  await deleteCredential(db, session.user.id, deletable.data)
+
+  return NextResponse.json({ok: true})
+}
