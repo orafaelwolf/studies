@@ -61,17 +61,12 @@ export default async function Image() {
           backgroundImage: 'repeating-linear-gradient(to bottom, ' + BG + ' 0px, ' + BG + ' 31px, ' + RULE + ' 31px, ' + RULE + ' 32px)',
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element -- next/image
-            has no meaning inside ImageResponse; Satori only renders <img>. */}
         <img src={curveSrc} width={1200} height={272} alt="" style={{position: 'absolute', bottom: 0, left: 0}} />
 
         <div style={{position: 'absolute', top: 0, bottom: 0, left: 56, width: 1, backgroundColor: PAPER_RED}} />
         <div style={{position: 'absolute', top: 0, bottom: 0, left: 60, width: 1, backgroundColor: PAPER_RED}} />
 
         <div style={{display: 'flex', alignItems: 'center', gap: 21}}>
-          {/* eslint-disable-next-line @next/next/no-img-element -- Satori
-              only renders <img>; next/image has no meaning inside
-              ImageResponse. */}
           <img src={markSrc} width={46} height={46} alt="" />
           <div
             style={{

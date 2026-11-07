@@ -37,6 +37,11 @@ next-env.d.ts
 /public/pdf.worker.min.mjs
 /public/pdf.min.mjs
 
+# Restored by scripts/fetch-upstream-assets.mjs during postinstall.
+/app/favicon.ico
+/assets/fonts/
+/public/samples/
+
 /benchmark/
 
 /.claude
