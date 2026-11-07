@@ -1,0 +1,107 @@
+import {and, eq} from 'drizzle-orm'
+import {notFound, redirect} from 'next/navigation'
+import {after} from 'next/server'
+
+import {auth} from '@/auth'
+import {canSortTopicsHere} from '@/lib/ai/resolve'
+import {TopicSorter} from '@/components/topic-sorter'
+import {db} from '@/lib/db'
+import {worksheets} from '@/lib/schema'
+import {queueDepth} from '@/lib/queue'
+import {kickDrain} from '@/lib/worker/jobs'
+import {findLibraryDuplicates, loadQuestionsWithChoices} from '@/lib/questions/queries'
+import {modalChoiceCount, validateQuestion, worthRereading} from '@/lib/questions/numbering'
+
+import {CheckClient, type CheckableQuestion} from './check-client'
+
+export const metadata = {title: 'Check your questions · StudyBuddy'}
+
+type Params = {params: Promise<{id: string}>}
+
+export default async function CheckPage({params}: Params) {
+  const session = await auth()
+  if (!session || !session.user || !session.user.id) redirect('/signin')
+
+  const {id} = await params
+
+  const [worksheet] = await db
+    .select({
+      id: worksheets.id,
+      title: worksheets.title,
+      classificationError: worksheets.classificationError,
+    })
+    .from(worksheets)
+    .where(and(eq(worksheets.id, id), eq(worksheets.userId, session.user.id)))
+    .limit(1)
+
+  if (!worksheet) notFound()
+
+  const [shaped, duplicates, canSortHere, depth] = await Promise.all([
+    loadQuestionsWithChoices(db, id),
+    findLibraryDuplicates(db, session.user.id, id),
+    canSortTopicsHere(db, session.user.id),
+    queueDepth(db, 'server'),
+  ])
+
+  if (depth.pending > 0 || depth.staleRunning > 0) {
+    after(() => kickDrain('check page'))
+  }
+
+  const duplicateFor = new Map(duplicates.map((row) => [row.questionId, row]))
+
+  const expectedChoiceCount = modalChoiceCount(shaped)
+
+  const items: CheckableQuestion[] = shaped.map((row) => {
+    const flags = validateQuestion(row, {expectedChoiceCount})
+    const duplicate = duplicateFor.get(row.id)
+
+    return {
+      id: row.id,
+      printedNumber: row.printedNumber,
+      ordinal: row.ordinal,
+      pageNumber: row.pageNumber,
+      promptText: row.promptText,
+      choices: row.choices,
+      userVerified: row.userVerified,
+      concerns: worthRereading(flags) ? flags.map((flag) => flag.detail) : [],
+      duplicateOf: duplicate
+        ? {
+            worksheetId: duplicate.matchWorksheetId,
+            worksheetTitle: duplicate.matchWorksheetTitle,
+            exact: duplicate.exact,
+          }
+        : null,
+    }
+  })
+
+  return (
+    <main className="mx-auto w-full max-w-3xl px-6 py-10">
+      <h1 className="text-balance text-2xl font-semibold tracking-tight">
+        Check your questions
+      </h1>
+      <p className="hint mb-6">{worksheet.title}</p>
+
+      {worksheet.classificationError && (
+        <div className="mb-6 rounded-xl border border-caution/40 bg-caution/10 px-3 py-2 text-sm text-caution">
+          <p role="alert">
+            {worksheet.classificationError}{' '}
+            {canSortHere
+              ? 'Until they are sorted, your answers still count; they just will not show up by topic.'
+              : 'Your answers still count once you mark this worksheet; they just will not show up sorted by topic.'}
+          </p>
+
+          {canSortHere && (
+            <div className="mt-3">
+              <TopicSorter
+                worksheets={[{id: worksheet.id, title: worksheet.title}]}
+                label="Sort these into topics"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      <CheckClient worksheetId={worksheet.id} questions={items} />
+    </main>
+  )
+}

@@ -1,0 +1,592 @@
+'use client'
+
+import Link from 'next/link'
+import {useCallback, useEffect, useRef, useState} from 'react'
+
+import {ReportButton} from '@/components/report-button'
+import {Tick} from '@/components/hand'
+import {reflowText} from '@/lib/questions/shape'
+import type {ReviewItem} from '@/lib/review'
+import {fetchJson} from '@/lib/client/http'
+
+type Rating = 'again' | 'hard' | 'good' | 'easy'
+
+const RATINGS: {value: Rating; label: string; hint: string; key: string}[] = [
+  {value: 'again', label: 'Again', hint: 'No idea', key: '1'},
+  {value: 'hard', label: 'Hard', hint: 'Got there slowly', key: '2'},
+  {value: 'good', label: 'Good', hint: 'Knew it', key: '3'},
+  {value: 'easy', label: 'Easy', hint: 'Instant', key: '4'},
+]
+
+type Tally = Record<Rating, number>
+
+const NO_TALLY: Tally = {again: 0, hard: 0, good: 0, easy: 0}
+
+const RATING_COLOUR: Record<Rating, string> = {
+  again: 'bg-danger',
+  hard: 'bg-caution',
+  good: 'bg-success',
+  easy: 'bg-accent',
+}
+
+function barWidth(count: number, total: number): number {
+  if (total <= 0) return 4
+
+  const share = (count / total) * 100
+  if (share < 4) return 4
+
+  return share
+}
+
+function minutesSince(start: number): string {
+  const minutes = Math.round((Date.now() - start) / 60000)
+  if (minutes < 1) return 'under a minute'
+
+  let noun = 'minutes'
+  if (minutes === 1) noun = 'minute'
+
+  return minutes + ' ' + noun
+}
+
+export default function ReviewSession({
+  items,
+  topicName,
+}: {
+  items: ReviewItem[]
+  topicName?: string | null
+}) {
+  const [index, setIndex] = useState(0)
+  const [revealed, setRevealed] = useState(false)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [done, setDone] = useState(0)
+  const [explaining, setExplaining] = useState(false)
+  const [explainError, setExplainError] = useState<string | null>(null)
+  const [explainNotice, setExplainNotice] = useState<string | null>(null)
+  const [generated, setGenerated] = useState<Record<string, string>>({})
+
+  const [tally, setTally] = useState<Tally>(NO_TALLY)
+  const [run, setRun] = useState(0)
+  const [bestRun, setBestRun] = useState(0)
+  const [startedAt] = useState(() => Date.now())
+
+  const explainAbort = useRef<AbortController | null>(null)
+
+  const queueKey = items.map((entry) => entry.cardId).join('|')
+  const [queueSeen, setQueueSeen] = useState(queueKey)
+
+  if (queueKey !== queueSeen) {
+    setQueueSeen(queueKey)
+    setIndex(0)
+    setRevealed(false)
+  }
+
+  async function explain(entry: ReviewItem) {
+    const previous = explainAbort.current
+    if (previous) previous.abort()
+
+    const controller = new AbortController()
+    explainAbort.current = controller
+
+    setExplaining(true)
+    setExplainError(null)
+    setExplainNotice(null)
+
+    try {
+      const response = await fetchJson('/api/explain', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({questionId: entry.questionId}),
+        signal: controller.signal,
+      })
+      const body = (await response.json()) as {
+        explanation?: {body: string}
+        error?: string
+      }
+      if (!response.ok) {
+        let message = 'Could not generate that.'
+        if (body.error) message = body.error
+
+        throw new Error(message)
+      }
+
+      if (!body.explanation) {
+        throw new Error('That explanation did not come through. Try again.')
+      }
+
+      const text = body.explanation.body
+
+      setGenerated((current) => ({...current, [entry.questionId]: text}))
+    } catch (cause) {
+      if (controller.signal.aborted) return
+      setExplainError((cause as Error).message)
+    } finally {
+      if (!controller.signal.aborted) setExplaining(false)
+      if (explainAbort.current === controller) explainAbort.current = null
+    }
+  }
+
+  const item = items[index]
+
+  let currentQuestionId = undefined
+  if (item) currentQuestionId = item.questionId
+  const [explainFor, setExplainFor] = useState(currentQuestionId)
+
+  if (currentQuestionId !== explainFor) {
+    setExplainFor(currentQuestionId)
+    setExplaining(false)
+    setExplainError(null)
+    setExplainNotice(null)
+  }
+
+  useEffect(() => {
+    return () => {
+      const running = explainAbort.current
+      if (running) running.abort()
+
+      explainAbort.current = null
+    }
+  }, [currentQuestionId])
+
+  const advance = useCallback(() => {
+    setDone((count) => count + 1)
+
+    if (index + 1 >= items.length) {
+      setIndex(items.length)
+    } else {
+      setIndex((current) => current + 1)
+      setRevealed(false)
+    }
+  }, [index, items.length])
+
+  const retire = useCallback(async () => {
+    if (!item || busy) return
+    setBusy(true)
+    setError(null)
+
+    try {
+      const response = await fetchJson('/api/review/retire', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({cardId: item.cardId}),
+      })
+      if (!response.ok) throw new Error('Could not put that one away')
+
+      advance()
+    } catch {
+      setError('Could not put that one away. Check your connection and try again.')
+    } finally {
+      setBusy(false)
+    }
+  }, [item, busy, advance])
+
+  const rate = useCallback(
+    async (rating: Rating) => {
+      if (!item || busy) return
+      setBusy(true)
+      setError(null)
+
+      try {
+        const response = await fetchJson('/api/review/rate', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({cardId: item.cardId, rating}),
+        })
+        if (!response.ok) throw new Error('Could not save that rating')
+
+        setTally((current) => ({...current, [rating]: current[rating] + 1}))
+        setRun((current) => {
+          const next = rating === 'again' ? 0 : current + 1
+          setBestRun((best) => Math.max(best, next))
+          return next
+        })
+
+        advance()
+      } catch {
+        setError('Could not save that rating. Check your connection and try again.')
+      } finally {
+        setBusy(false)
+      }
+    },
+    [item, busy, advance],
+  )
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.metaKey || event.ctrlKey || event.altKey) return
+      const target = event.target as HTMLElement | null
+      if (target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) return
+
+      if (!revealed && (event.key === ' ' || event.key === 'Enter')) {
+        event.preventDefault()
+        setRevealed(true)
+        return
+      }
+
+      if (revealed) {
+        const match = RATINGS.find((rating) => rating.key === event.key)
+        if (match) {
+          event.preventDefault()
+          void rate(match.value)
+        }
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [revealed, rate])
+
+  if (!item) {
+    if (done > 0) {
+      return (
+        <Recap
+          done={done}
+          bestRun={bestRun}
+          tally={tally}
+          startedAt={startedAt}
+        />
+      )
+    }
+
+    if (topicName) {
+      return (
+        <div className="text-center">
+          <h2 className="font-medium">Nothing due in {topicName}</h2>
+          <p className="hint mx-auto max-w-sm text-pretty">
+            Everything you are tracking under this topic is scheduled for later.
+          </p>
+          <div className="mt-4 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link href="/review" className="btn btn-primary sm:w-auto sm:px-6">
+              Review everything due
+            </Link>
+            <Link href="/dashboard" className="btn btn-secondary sm:w-auto sm:px-6">
+              Back to dashboard
+            </Link>
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div className="text-center">
+        <h2 className="font-medium">Nothing due</h2>
+        <p className="hint mx-auto max-w-sm text-pretty">
+          Everything you are tracking is scheduled for later. Upload another
+          worksheet, or come back when something comes up for review.
+        </p>
+        <div className="mt-4 flex flex-col justify-center gap-3 sm:flex-row">
+          <Link href="/upload" className="btn btn-primary sm:w-auto sm:px-6">
+            Upload a worksheet
+          </Link>
+          <Link href="/dashboard" className="btn btn-secondary sm:w-auto sm:px-6">
+            Back to dashboard
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
+  let chosen = undefined
+  let correctChoice = undefined
+
+  for (const choice of item.choices) {
+    if (choice.id === item.lastChoiceId) chosen = choice
+    if (choice.isCorrect && !correctChoice) correctChoice = choice
+  }
+
+  let explanation: string | null = null
+
+  if (generated[item.questionId]) {
+    explanation = generated[item.questionId]
+  } else if (item.explanation) {
+    explanation = item.explanation.body
+  }
+
+  let answerLine = 'No answer key was recorded.'
+
+  if (correctChoice) {
+    answerLine = correctChoice.label + '. ' + correctChoice.text
+  } else if (item.correctAnswer) {
+    answerLine = item.correctAnswer
+  }
+
+  let explainLabel = 'Explain this'
+  if (explaining) explainLabel = 'Writing…'
+
+  let explainHint = 'Generated once, then saved. It uses your answer to target the mistake.'
+  if (explainNotice !== null) explainHint = explainNotice
+  if (explainError !== null) explainHint = explainError
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <div
+          role="progressbar"
+          aria-valuenow={index}
+          aria-valuemin={0}
+          aria-valuemax={items.length}
+          aria-label="Review progress"
+          className="h-1 overflow-hidden bg-wash-strong"
+        >
+          <div
+            className="h-full bg-fg"
+            style={{width: (index / items.length) * 100 + '%'}}
+          />
+        </div>
+
+        <div className="mt-2 flex items-baseline justify-between gap-3">
+          <p className="eyebrow">
+            Question {index + 1} / {items.length}
+          </p>
+
+          {run >= 2 && (
+            <p aria-hidden="true" className="eyebrow text-fg">
+              Run <span className="marked font-bold tabular-nums">{run}</span>
+            </p>
+          )}
+        </div>
+      </div>
+
+      <article className="border-t border-fg/20 pt-4">
+        {item.topicName && (
+          <p className="mb-2 text-xs uppercase tracking-wide text-muted">
+            {item.topicName}
+          </p>
+        )}
+
+        <p className="whitespace-pre-line text-pretty">{reflowText(item.promptText)}</p>
+
+        {item.choices.length > 0 && (
+          <ul className="mt-4 space-y-1.5">
+            {item.choices.map((choice) => {
+              let tone = ''
+              if (revealed) {
+                if (choice.isCorrect) tone = 'bg-success/12 text-success'
+                else if (choice.id === item.lastChoiceId) tone = 'bg-danger/12 text-danger'
+              }
+
+              return (
+                <li
+                  key={choice.id}
+                  className={'flex gap-2 rounded-xl px-3 py-2 text-sm ' + tone}
+                >
+                  {revealed && choice.isCorrect && (
+                    <Tick className="mt-[0.15rem] size-4 shrink-0" />
+                  )}
+                  <span>
+                    <span className="font-medium">{choice.label}.</span>{' '}
+                    {choice.text}
+                  </span>
+                </li>
+              )
+            })}
+          </ul>
+        )}
+
+        {!revealed ? (
+          <button
+            type="button"
+            className="btn btn-secondary mt-5 touch-manipulation"
+            onClick={() => setRevealed(true)}
+          >
+            Show answer
+          </button>
+        ) : (
+          <div className="mt-5 space-y-4 pt-4">
+            <div>
+              <h2 className="eyebrow">Answer</h2>
+              <p className="mt-1 text-sm">{answerLine}</p>
+
+              {item.answerSource === 'ai_derived' && (
+                <p className="mt-2 rounded-lg px-2 py-1 text-xs text-muted">
+                  AI-derived, not from an answer key. Double-check it.
+                </p>
+              )}
+            </div>
+
+            {(chosen || item.lastFreeText) && (
+              <div>
+                <h2 className="eyebrow">You put</h2>
+                <p className="mt-1 text-sm text-muted">
+                  {chosen && chosen.label + '. ' + chosen.text}
+                  {!chosen && item.lastFreeText}
+                </p>
+              </div>
+            )}
+
+            <div>
+              <h2 className="eyebrow">Explanation</h2>
+              {explanation ? (
+                <>
+                  <p className="mt-1 whitespace-pre-line text-pretty text-sm">
+                    {explanation}
+                  </p>
+                  <div className="mt-2">
+                    <ReportButton
+                      target={{kind: 'explanation', questionId: item.questionId}}
+                      label="This explanation looks wrong"
+                      placeholder="What is wrong with it?"
+                    />
+                  </div>
+                </>
+              ) : (
+                <div className="mt-1">
+                  <button
+                    type="button"
+                    className="card px-3 py-1.5 text-sm hover:border-accent hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-60"
+                    disabled={explaining}
+                    onClick={() => void explain(item)}
+                  >
+                    {explainLabel}
+                  </button>
+                  <p aria-live="polite" className="hint">
+                    {explainHint}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </article>
+
+      {error && (
+        <p
+          role="alert"
+          className="rounded-xl bg-danger/10 px-3 py-2 text-sm text-danger"
+        >
+          {error}
+        </p>
+      )}
+
+      {revealed && (
+        <div>
+          <p className="hint mb-2">How well did you recall it?</p>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {RATINGS.map((rating) => (
+              <button
+                key={rating.value}
+                type="button"
+                disabled={busy}
+                onClick={() => void rate(rating.value)}
+                className="flex min-h-11 flex-col items-center card px-2 py-2 text-sm touch-manipulation hover:border-accent hover:bg-accent/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-50"
+              >
+                <span className="font-medium">{rating.label}</span>
+                <span className="text-xs text-muted">{rating.hint}</span>
+                <span className="text-xs tabular-nums text-muted">
+                  {item.intervals[rating.value]}
+                </span>
+              </button>
+            ))}
+          </div>
+          <p className="hidden text-xs text-muted sm:mt-2 sm:block">
+            Keys <kbd>1</kbd>–<kbd>4</kbd>, or <kbd>Space</kbd> to reveal
+          </p>
+
+          <div className="mt-4 pt-3">
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => void retire()}
+              className="btn-compact rounded-xl px-1 text-sm text-muted hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-50"
+            >
+              Got it, stop asking me this one
+            </button>
+            <p className="hint">
+              It stays counted as one you missed, and stays in your Blooket
+              export. It just leaves the practice queue.
+            </p>
+          </div>
+        </div>
+      )}
+
+      <p aria-live="polite" className="sr-only">
+        Question {index + 1} of {items.length}
+        {revealed ? ', answer revealed' : ''}
+      </p>
+    </div>
+  )
+}
+
+function Recap({
+  done,
+  bestRun,
+  tally,
+  startedAt,
+}: {
+  done: number
+  bestRun: number
+  tally: Tally
+  startedAt: number
+}) {
+  let rated = 0
+  for (const rating of RATINGS) rated = rated + tally[rating.value]
+  const recalled = rated - tally.again
+
+  return (
+    <div>
+      <h2 className="eyebrow">Sitting complete</h2>
+
+      <p className="mt-2 text-3xl font-bold tabular-nums">
+        {done} <span className="text-xl font-normal text-muted">reviewed</span>
+      </p>
+
+      {rated > 0 && (
+        <>
+          <div aria-hidden="true" className="mt-5 flex h-2.5 overflow-hidden">
+            {RATINGS.filter((rating) => tally[rating.value] > 0).map((rating) => (
+              <span
+                key={rating.value}
+                className={RATING_COLOUR[rating.value]}
+                style={{width: barWidth(tally[rating.value], rated) + '%'}}
+              />
+            ))}
+          </div>
+
+          <dl className="mt-3 grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-4">
+            {RATINGS.map((rating) => (
+              <div key={rating.value} className="flex items-baseline gap-2">
+                <span
+                  aria-hidden="true"
+                  className={'size-2 shrink-0 ' + RATING_COLOUR[rating.value]}
+                />
+                <dt className="flex-1 text-sm text-muted">{rating.label}</dt>
+                <dd className="font-mono text-sm font-bold tabular-nums">
+                  {tally[rating.value]}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </>
+      )}
+
+      <p className="mt-5 pt-4 text-sm text-pretty">
+        {recalled === rated && rated > 0 ? (
+          <>You recalled every one of them.</>
+        ) : (
+          <>
+            You recalled <span className="tabular-nums">{recalled}</span> of{' '}
+            <span className="tabular-nums">{rated}</span> without having to
+            start over.
+          </>
+        )}{' '}
+        {bestRun >= 2 && (
+          <>
+            Your best run was{' '}
+            <span className="marked font-bold tabular-nums">{bestRun}</span> in
+            a row.{' '}
+          </>
+        )}
+        That took {minutesSince(startedAt)}.
+      </p>
+
+      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+        <a href="/review" className="btn btn-primary sm:w-auto sm:px-6">
+          Keep going
+        </a>
+        <Link href="/dashboard" className="btn btn-secondary sm:w-auto sm:px-6">
+          Back to dashboard
+        </Link>
+      </div>
+    </div>
+  )
+}
