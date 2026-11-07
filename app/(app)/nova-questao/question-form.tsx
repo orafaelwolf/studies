@@ -1,10 +1,10 @@
 'use client'
 
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useRouter} from 'next/navigation'
 
 import {parseQuestionText, type ParsedQuestion} from '@/lib/questions/parser'
-import {clipboardHtmlToText} from '@/lib/questions/clipboard'
+import {clipboardHtmlToText, clipboardImage} from '@/lib/questions/clipboard'
 import {recognizeQuestionImage} from '@/lib/questions/image-ocr'
 
 type Choice = {label: string; text: string}
@@ -53,6 +53,21 @@ export default function QuestionForm({exams}: {exams: ExamOption[]}) {
       setReadingImage(false)
     }
   }
+
+  useEffect(() => {
+    function onPaste(event: ClipboardEvent) {
+      if (event.defaultPrevented || !event.clipboardData || readingImage || busy) return
+      const image = clipboardImage(event.clipboardData)
+      if (!image) return
+      // Text copied from a website can include images as well. Preserve the
+      // existing text-paste behavior when the clipboard contains actual text.
+      if (event.clipboardData.getData('text/plain').trim()) return
+      event.preventDefault()
+      void readImage(image)
+    }
+    window.addEventListener('paste', onPaste)
+    return () => window.removeEventListener('paste', onPaste)
+  })
 
   function updateAdditionalComment(value: string) {
     setAdditionalComment(value)
@@ -108,7 +123,7 @@ export default function QuestionForm({exams}: {exams: ExamOption[]}) {
   }
 
   return <form onSubmit={submit} className="mt-8 space-y-5">
-    <label><span className="label">Imagem da questão</span><input type="file" accept="image/png,image/jpeg,image/webp" className="field" disabled={readingImage || busy} onChange={(event) => {const file = event.currentTarget.files?.[0]; event.currentTarget.value = ''; if (file) void readImage(file)}} /><span className="hint">A imagem é lida neste navegador e não é enviada nem salva no banco. A primeira leitura pode precisar baixar o modelo de português.</span></label>
+    <label><span className="label">Imagem da questão</span><input type="file" accept="image/png,image/jpeg,image/webp" className="field" disabled={readingImage || busy} onChange={(event) => {const file = event.currentTarget.files?.[0]; event.currentTarget.value = ''; if (file) void readImage(file)}} /><span className="hint">Você também pode copiar uma captura de tela e apertar ⌘V nesta página. A imagem é lida neste navegador e não é enviada nem salva no banco. A primeira leitura pode precisar baixar o modelo de português.</span></label>
     {readingImage && <p role="status" className="hint">Lendo a imagem em português…</p>}
     {imageFile && !readingImage && <p className="hint">Imagem selecionada: {imageFile.name}. Confira o texto extraído antes de salvar.</p>}
     <label hidden={Boolean(parsed)}><span className="label">Cole sua questão completa aqui</span><textarea value={raw} onChange={(event) => setRaw(event.target.value)} onBlur={() => {if (raw && !parsed) applyParser(raw)}} onPaste={(event) => { const plain = event.clipboardData.getData('text/plain'); const html = event.clipboardData.getData('text/html'); const structured = html ? clipboardHtmlToText(html) : ''; const pasted = plain.includes('\n') || !structured ? plain : structured; if (pasted) {event.preventDefault(); setRaw(pasted); applyParser(pasted)} }} className="field min-h-40" placeholder="Cole o texto copiado do Qconcursos ou de outra plataforma" /><span className="hint">Confira a prévia antes de salvar.</span></label>

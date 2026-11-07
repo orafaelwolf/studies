@@ -1,3 +1,16 @@
+/** Read only image items explicitly provided by a paste event. */
+export function clipboardImage(data: Pick<DataTransfer, 'items' | 'files'>): File | null {
+  const images: File[] = []
+  for (const item of Array.from(data.items)) {
+    if (item.kind === 'file' && item.type.startsWith('image/')) {
+      const image = item.getAsFile()
+      if (image) images.push(image)
+    }
+  }
+  images.push(...Array.from(data.files).filter((file) => file.type.startsWith('image/')))
+  return images.find((file) => ['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) || images[0] || null
+}
+
 // Parse inert HTML only; never add the document or any of its markup to the page.
 export function clipboardHtmlToText(html: string): string {
   const doc = new DOMParser().parseFromString(html, 'text/html')
