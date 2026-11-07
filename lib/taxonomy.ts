@@ -1,3 +1,4 @@
+import {STUDY_EXAMS} from '@/lib/studies-exams'
 import path from 'node:path'
 import {existsSync} from 'node:fs'
 
@@ -169,7 +170,25 @@ const competitionMath = n(
   ),
 )
 
-const TAXONOMY: TopicNode[] = [satMath, satReadingWriting, competitionMath]
+// Conteúdos exatos das planilhas de Pomerode e GMBC. Mantemos as raízes
+// originais de SAT apenas para preservar testes e registros legados.
+const studyNodes: TopicNode[] = STUDY_EXAMS.map((exam) => ({
+  name: exam.nome,
+  slug: exam.id,
+  children: exam.disciplinas.map((disciplina, subjectIndex) => ({
+    name: disciplina.disciplina,
+    slug: 'disc-' + (subjectIndex + 1),
+    children: [...new Set(exam.topicos.filter((topic) => topic.disciplina === disciplina.disciplina).map((topic) => topic.eixo))]
+      .map((eixo, blockIndex) => ({
+        name: eixo,
+        slug: 'eixo-' + (blockIndex + 1),
+        children: exam.topicos.filter((topic) => topic.disciplina === disciplina.disciplina && topic.eixo === eixo)
+          .map((topic) => ({name: topic.topico, slug: 'topico-' + topic.id})),
+      })),
+  })),
+}))
+
+const TAXONOMY: TopicNode[] = [...studyNodes, satMath, satReadingWriting, competitionMath]
 
 export type FlatTopic = {
   slug: string

@@ -8,24 +8,20 @@ import {operatorUsage} from '@/lib/ai/usage'
 import {db} from '@/lib/db'
 import {UsageNotice} from '@/components/usage-notice'
 import {flattenTaxonomy} from '@/lib/taxonomy'
-import {findSample} from '@/lib/upload'
 
 import UploadClient, {type SubjectGroup} from './upload-client'
 
-export const metadata = {title: 'Upload a Worksheet · StudyBuddy'}
-
-type Props = {
-  searchParams: Promise<{sample?: string}>
-}
+export const metadata = {title: 'Enviar caderno em PDF · Studies'}
 
 function subjectGroups(): SubjectGroup[] {
   const topics = flattenTaxonomy()
+  const examIds = new Set(['pomerode-2026', 'gmbc-2026'])
   const groups: SubjectGroup[] = []
 
   for (const root of topics) {
-    if (root.depth !== 0) continue
+    if (root.depth !== 0 || !examIds.has(root.slug)) continue
 
-    const options = [{slug: root.slug, label: 'All of ' + root.name}]
+    const options = [{slug: root.slug, label: 'Todas as disciplinas'}]
 
     for (const child of topics) {
       if (child.depth !== 1) continue
@@ -40,11 +36,10 @@ function subjectGroups(): SubjectGroup[] {
   return groups
 }
 
-export default async function UploadPage({searchParams}: Props) {
+export default async function UploadPage() {
   const session = await auth()
   if (!session || !session.user || !session.user.id) redirect('/signin')
 
-  const {sample} = await searchParams
   const resolved = await resolveProvider(db, session.user.id)
 
   let usage = null
@@ -55,23 +50,14 @@ export default async function UploadPage({searchParams}: Props) {
   const noReader = resolved.executor === 'none'
 
   let noReaderLine =
-    'Your free trial is used up, so anything you upload now will not be read for you: ' +
-    'you can still add its questions by hand. To have them read again, connect your ' +
-    'own AI provider in'
+    'A extração automática de questões está indisponível. Você ainda pode cadastrar questões manualmente. Para ativar a leitura por IA, configure seu provedor em'
   if (resolved.tier === 'trial') {
     noReaderLine =
-      'Nothing is set up to read worksheets on this deployment right now, so anything ' +
-      'you upload will not be read for you: you can still add its questions by hand. ' +
-      'To have them read, connect your own AI provider in'
+      'Nenhum provedor de IA está configurado para extrair questões de PDFs. Você pode continuar cadastrando questões manualmente. Para ativar a extração, acesse'
   }
 
   let sharedReads = undefined
   if (usage) sharedReads = {calls: usage.calls, cap: usage.cap}
-
-  const startingSample = findSample(sample)
-
-  let initialSample = undefined
-  if (startingSample) initialSample = startingSample.slug
 
   return (
     <main className="mx-auto w-full max-w-2xl px-6 py-10">
@@ -85,12 +71,12 @@ export default async function UploadPage({searchParams}: Props) {
       </nav>
 
       <div className="mb-8">
-        <PageHead title="Upload a worksheet" />
+        <PageHead title="Enviar questões em PDF" />
       </div>
 
       {usage && usage.level !== 'ok' && (
         <div className="mb-6">
-          <UsageNotice usage={usage} samplesHref="#samples" />
+          <UsageNotice usage={usage} samplesHref="/nova-questao" />
         </div>
       )}
 
@@ -108,7 +94,6 @@ export default async function UploadPage({searchParams}: Props) {
 
       <UploadClient
         subjects={subjectGroups()}
-        initialSample={initialSample}
         sharedReads={sharedReads}
       />
     </main>
