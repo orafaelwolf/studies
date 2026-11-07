@@ -1,0 +1,174 @@
+import {NextResponse} from 'next/server'
+import {and, eq, inArray} from 'drizzle-orm'
+import {z} from 'zod'
+import {MAX_DECODED_PIXELS, MAX_PAGE_BYTES, MAX_PAGE_DIMENSION, MAX_SOURCE_PAGE_NUMBER} from '@/lib/upload'
+import {worksheetPages, worksheets} from '@/lib/schema'
+import {guardWorksheet} from '@/lib/queue'
+import {consumeRateLimit, PAGE_UPLOAD_LIMIT, readJson} from '@/lib/api'
+import {db} from '@/lib/db'
+import {pageImageKey, storage} from '@/lib/queue'
+
+export const maxDuration = 300
+
+type Params = {params: Promise<{id: string}>}
+
+export async function POST(request: Request, {params}: Params) {
+  const {id: worksheetId} = await params
+
+  const guard = await guardWorksheet(worksheetId)
+  if (!guard.ok) {
+    return NextResponse.json({error: 'Not found'}, {status: guard.status})
+  }
+
+  const allowance = await consumeRateLimit(
+    db,
+    PAGE_UPLOAD_LIMIT,
+    'user:' + guard.userId,
+  )
+
+  if (!allowance.ok) {
+    return NextResponse.json(
+      {error: "That's a lot of pages in one go. Try again shortly."},
+      {status: 429, headers: {'Retry-After': String(allowance.retryAfter)}},
+    )
+  }
+
+  const form = await request.formData().catch(() => null)
+  if (!form) {
+    return NextResponse.json({error: 'Missing image'}, {status: 400})
+  }
+
+  const file = form.get('image')
+  const pageNumber = Number(form.get('pageNumber'))
+
+  if (!(file instanceof File)) {
+    return NextResponse.json({error: 'Missing image'}, {status: 400})
+  }
+
+  if (
+    !Number.isInteger(pageNumber) ||
+    pageNumber < 1 ||
+    pageNumber > MAX_SOURCE_PAGE_NUMBER
+  ) {
+    return NextResponse.json({error: 'Invalid page number'}, {status: 400})
+  }
+
+  if (file.size > MAX_PAGE_BYTES) {
+    return NextResponse.json({error: 'Page image is too large'}, {status: 413})
+  }
+
+  const [sheet] = await db
+    .select({pageCount: worksheets.pageCount, status: worksheets.status})
+    .from(worksheets)
+    .where(eq(worksheets.id, worksheetId))
+    .limit(1)
+
+  if (!sheet) {
+    return NextResponse.json({error: 'Not found'}, {status: 404})
+  }
+
+  const stored = await db
+    .select({pageNumber: worksheetPages.pageNumber})
+    .from(worksheetPages)
+    .where(eq(worksheetPages.worksheetId, worksheetId))
+
+  let replacing = false
+  for (const row of stored) {
+    if (row.pageNumber === pageNumber) replacing = true
+  }
+  if (!replacing && stored.length >= sheet.pageCount) {
+    return NextResponse.json(
+      {error: 'That is more pages than this worksheet was created for.'},
+      {status: 409},
+    )
+  }
+
+  const {default: sharp} = await import('sharp')
+
+  let image
+  try {
+    image = await sharp(Buffer.from(await file.arrayBuffer()), {
+      limitInputPixels: MAX_DECODED_PIXELS,
+    })
+      .rotate()
+      .webp({quality: 82})
+      .toBuffer({resolveWithObject: true})
+  } catch {
+    return NextResponse.json({error: 'Not an image'}, {status: 415})
+  }
+
+  const {width, height} = image.info
+
+  if (width > MAX_PAGE_DIMENSION || height > MAX_PAGE_DIMENSION) {
+    return NextResponse.json({error: 'Page image is too large'}, {status: 413})
+  }
+
+  const key = pageImageKey(worksheetId, pageNumber)
+  await storage.put(key, image.data, 'image/webp')
+
+  const [page] = await db
+    .insert(worksheetPages)
+    .values({worksheetId, pageNumber, imageKey: key, width, height})
+    .onConflictDoUpdate({
+      target: [worksheetPages.worksheetId, worksheetPages.pageNumber],
+      set: {imageKey: key, width, height},
+    })
+    .returning({id: worksheetPages.id})
+
+  if (sheet.status === 'uploading' || sheet.status === 'processing') {
+    await db
+      .update(worksheets)
+      .set({status: 'processing'})
+      .where(
+        and(
+          eq(worksheets.id, worksheetId),
+          inArray(worksheets.status, ['uploading', 'processing']),
+        ),
+      )
+  }
+
+  return NextResponse.json({pageId: page.id, imageKey: key}, {status: 201})
+}
+
+const bboxSchema = z.tuple([z.number(), z.number(), z.number(), z.number()])
+
+const ocrSchema = z.object({
+  pageId: z.string().min(1),
+  ocrText: z.string().max(200_000),
+  ocrEngine: z.enum(['pdf_text', 'tesseract', 'vision']),
+  textLines: z
+    .array(z.object({text: z.string().max(2000), bbox: bboxSchema}))
+    .max(4000)
+    .optional(),
+})
+
+export async function PATCH(request: Request, {params}: Params) {
+  const {id: worksheetId} = await params
+
+  const guard = await guardWorksheet(worksheetId)
+  if (!guard.ok) {
+    return NextResponse.json({error: 'Not found'}, {status: guard.status})
+  }
+
+  const parsed = ocrSchema.safeParse(await readJson(request))
+  if (!parsed.success) {
+    return NextResponse.json({error: 'Invalid request'}, {status: 400})
+  }
+
+  const {pageId, ocrText, ocrEngine} = parsed.data
+
+  let textLines = null
+  if (parsed.data.textLines) textLines = parsed.data.textLines
+
+  await db
+    .update(worksheetPages)
+    .set({ocrText, ocrEngine, textLines: textLines})
+    .where(
+      and(
+        eq(worksheetPages.id, pageId),
+        eq(worksheetPages.worksheetId, worksheetId),
+      ),
+    )
+
+  return NextResponse.json({ok: true})
+}

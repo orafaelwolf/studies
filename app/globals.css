@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #5c5c5c;
+  --surface: #ffffff;
+  --wash: #f2f2f2;
+  --wash-strong: #e3e3e3;
+
+  --accent: #1a4d8f;
+
+  --danger: #a11212;
+  --success: #256029;
+  --warning: #8a5a00;
+  --caution: #7a6100;
+
+  --marker: #ffef9f;
+
+  --tint-lavender: #eeeeee;
+  --tint-butter: #f4f4f4;
+  --rule: #cccccc;
+  --rule-heavy: #666666;
+
+  --radius: 0;
+  --radius-lg: 0;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-wash: var(--wash);
+  --color-wash-strong: var(--wash-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-caution: var(--caution);
+  --color-marker: var(--marker);
+  --color-rule: var(--rule);
+  --color-rule-heavy: var(--rule-heavy);
+  --color-tint-lavender: var(--tint-lavender);
+  --color-tint-butter: var(--tint-butter);
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: ui-monospace, "Courier New", Courier, monospace;
+
+  --radius-sm: var(--radius);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-lg);
+  --radius-2xl: var(--radius-lg);
+}
+
+@layer base {
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+  }
+
+  a {
+    color: var(--accent);
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-sm font-bold text-muted;
+  }
+
+  .field {
+    @apply min-h-11 w-full bg-surface px-2 py-2 text-fg;
+
+    border: 1px solid var(--rule-heavy);
+    border-radius: 0;
+  }
+
+  .field:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 w-full items-center justify-center px-4 py-2
+      focus-visible:outline-2 focus-visible:outline-offset-2
+      focus-visible:outline-accent disabled:opacity-60;
+
+    border: 1px solid var(--rule-heavy);
+    border-radius: 0;
+  }
+
+  .inset-safe-top {
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
+  .inset-safe-bottom {
+    padding-bottom: max(0.25rem, env(safe-area-inset-bottom));
+  }
+
+  .btn-compact {
+    @apply -my-2 inline-flex min-h-11 items-center py-2;
+  }
+
+  .btn-primary {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  .btn-secondary {
+    background: var(--wash);
+    color: var(--fg);
+  }
+
+  .btn-danger {
+    background: var(--danger);
+    color: #ffffff;
+  }
+
+  .label {
+    @apply mb-1 block text-sm font-bold text-fg;
+  }
+
+  .hint {
+    @apply mt-1 text-sm text-muted;
+  }
+
+  .card {
+    position: relative;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+  }
+
+  .card-sunk {
+    border: 1px solid var(--rule);
+    background: var(--wash);
+  }
+
+  .marked {
+    padding-inline: 0.15em;
+    background: var(--marker);
+  }
+}
+
+@media (forced-colors: active) {
+  .card,
+  .card-sunk,
+  .field {
+    border: 1px solid CanvasText;
+  }
+
+  [role='meter'] > *,
+  [role='progressbar'] > * {
+    forced-color-adjust: none;
+    background: Highlight;
+  }
+}
