@@ -45,11 +45,11 @@ export async function processQuestionDeterministically(db: Db, evidence: StudyEv
   const correctId = await saveItem(db, evidence, 'correct_rule', 'Resposta correta' + (identifiers ? ' · ' + identifiers : ''), correctBody)
   const ids = [correctId]
 
-  for (const choice of evidence.choices) {
-    if (choice.label === evidence.correctAnswer) continue
-    const personal = choice.label === evidence.markedAnswer ? '\n\nResposta marcada pelo aluno: esta alternativa foi escolhida e diverge do gabarito.' : ''
-    const qualification = evidence.answerOrigin === 'comment' ? 'Alternativa diferente do gabarito informado por comentarista, pendente de confirmação' : 'Alternativa incorreta identificada pelo gabarito'
-    ids.push(await saveItem(db, evidence, 'trap', qualification + ' ' + choice.label, qualification + ':\n' + choice.text + personal + comment))
+  const incorrect = evidence.choices.filter((choice) => choice.label !== evidence.correctAnswer)
+  if (incorrect.length) {
+    const qualification = evidence.answerOrigin === 'comment' ? 'Alternativas diferentes do gabarito informado por comentarista, pendentes de confirmação' : 'Alternativas incorretas identificadas pelo gabarito'
+    const personal = evidence.markedAnswer && evidence.markedAnswer !== evidence.correctAnswer ? '\nResposta marcada: ' + evidence.markedAnswer : ''
+    ids.push(await saveItem(db, evidence, 'trap', qualification, qualification + ':\n' + incorrect.map((choice) => choice.label + ': ' + choice.text).join('\n') + personal + comment))
   }
 
   const legalText = [evidence.legalReference, evidence.prompt, evidence.professorComment, ...evidence.choices.map((choice) => choice.text)].filter(Boolean).join('\n')
@@ -57,8 +57,8 @@ export async function processQuestionDeterministically(db: Db, evidence: StudyEv
 
   if (evidence.examBoard) ids.push(await saveItem(db, evidence, 'board_pattern', 'Evidência de cobrança: ' + evidence.examBoard, 'Uma questão da banca ' + evidence.examBoard + (evidence.examName ? ' no concurso ' + evidence.examName : '') + '. Incidência observada apenas na amostra pessoal; não representa distribuição oficial.'))
 
-  const front = evidence.legalReference ? 'Qual dispositivo foi mencionado na questão?' : (evidence.answerOrigin === 'comment' ? 'Qual alternativa foi indicada pelo comentarista' : 'Qual alternativa estava correta') + (identifiers ? ' em ' + identifiers : '') + '?'
-  const back = evidence.legalReference ? evidence.legalReference : (correct?.text || 'Gabarito informado: ' + evidence.correctAnswer)
+  const front = evidence.professorComment ? 'Qual explicação foi fornecida para ' + (evidence.subject || 'a questão') + '?' : evidence.legalReference ? 'Qual dispositivo foi mencionado na questão?' : (evidence.answerOrigin === 'comment' ? 'Qual alternativa foi indicada pelo comentarista' : 'Qual alternativa estava correta') + (identifiers ? ' em ' + identifiers : '') + '?'
+  const back = evidence.professorComment || evidence.legalReference || correct?.text || 'Gabarito informado: ' + evidence.correctAnswer
   if (back.trim()) await db.insert(flashcards).values({userId: evidence.userId, knowledgeItemId: correctId, front, back, deck: evidence.subject || 'Geral', topic: evidence.subject || null, contentHash: stableHash('flashcard', front, back), dueAt: new Date()}).onConflictDoNothing()
   return {knowledgeItemIds: ids, flashcardCreated: Boolean(back.trim())}
 }

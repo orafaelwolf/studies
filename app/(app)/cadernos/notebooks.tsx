@@ -1,0 +1,20 @@
+'use client'
+
+import {useState} from 'react'
+import {NotebookEditor} from '@/components/notebook-editor'
+
+type Source = {questionId: string; prompt: string; board: string | null; exam: string | null; subject: string | null; comment: string | null; imported: {comments: {author: string | null; kind: string; text: string}[]} | null}
+type Item = {id: string; kind: string; title: string; body: string; document: Record<string, unknown>[] | null; subject: string | null; status: 'draft' | 'verified'; sources: Source[]}
+const groups = [['correct_rule', 'Corretas'], ['trap', 'Pegadinhas'], ['law_reference', 'Lei seca'], ['board_pattern', 'Padrões da banca']] as const
+
+export function Notebooks({items}: {items: Item[]}) {
+  const [kind, setKind] = useState<string>('correct_rule')
+  const [search, setSearch] = useState('')
+  const [subject, setSubject] = useState('')
+  const [exam, setExam] = useState('')
+  const [editing, setEditing] = useState<string | null>(null)
+  const subjects = [...new Set(items.flatMap((item) => [item.subject, ...item.sources.map((source) => source.subject)]).filter((x): x is string => Boolean(x)))].sort()
+  const exams = [...new Set(items.flatMap((item) => item.sources.map((source) => source.exam)).filter((x): x is string => Boolean(x)))].sort()
+  const visible = items.filter((item) => item.kind === kind && (!subject || item.subject === subject || item.sources.some((source) => source.subject === subject)) && (!exam || item.sources.some((source) => source.exam === exam)) && (!search || [item.title, item.body, ...item.sources.map((source) => source.prompt)].join(' ').toLocaleLowerCase('pt-BR').includes(search.toLocaleLowerCase('pt-BR'))))
+  return <div className="mt-8 space-y-5"><div className="flex flex-wrap gap-2">{groups.map(([value, title]) => <button key={value} type="button" aria-pressed={kind === value} onClick={() => setKind(value)} className={'btn w-auto ' + (kind === value ? 'btn-primary' : 'btn-secondary')}>{title}</button>)}</div><div className="grid gap-3 sm:grid-cols-3"><label><span className="label">Buscar</span><input className="field" value={search} onChange={(event) => setSearch(event.target.value)} /></label><label><span className="label">Disciplina</span><select className="field" value={subject} onChange={(event) => setSubject(event.target.value)}><option value="">Todas</option>{subjects.map((value) => <option key={value}>{value}</option>)}</select></label><label><span className="label">Concurso</span><select className="field" value={exam} onChange={(event) => setExam(event.target.value)}><option value="">Todos</option>{exams.map((value) => <option key={value}>{value}</option>)}</select></label></div>{visible.length === 0 ? <p className="text-sm text-muted">Nenhum registro encontrado.</p> : visible.map((item) => <details key={item.id} className="card p-4"><summary className="cursor-pointer"><strong>{item.title}</strong> <span className="text-xs text-muted">· {item.subject || 'Sem disciplina'} · {item.status === 'verified' ? 'Verificado' : 'Rascunho'}</span></summary><p className="mt-3 whitespace-pre-wrap">{item.body}</p>{item.sources.map((source) => <section key={source.questionId} className="mt-4 border-t border-rule pt-3"><p className="text-sm text-muted">{[source.subject, source.exam, source.board].filter(Boolean).join(' · ')}</p><p className="mt-2 whitespace-pre-wrap"><strong>Questão de origem:</strong> {source.prompt}</p>{source.comment && <p className="mt-2 whitespace-pre-wrap"><strong>Comentário fornecido:</strong> {source.comment}</p>}{source.imported?.comments.map((comment, index) => <p key={index} className="mt-2 whitespace-pre-wrap"><strong>Comentário de {comment.author || comment.kind}:</strong> {comment.text}</p>)}</section>)}<button type="button" className="btn btn-secondary mt-4 w-auto" onClick={() => setEditing(editing === item.id ? null : item.id)}>{editing === item.id ? 'Fechar editor' : 'Editar e validar'}</button>{editing === item.id && <NotebookEditor id={item.id} body={item.body} status={item.status} document={item.document} />}</details>)}</div>
+}

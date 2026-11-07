@@ -21,5 +21,5 @@ export async function POST(request: Request, {params}: {params: Promise<{id: str
   const stored: StoredCard = {dueAt: card.dueAt, stability: card.stability, difficulty: card.difficulty, elapsedDays: card.elapsedDays, scheduledDays: card.scheduledDays, learningSteps: card.learningSteps, reps: card.reps, lapses: card.lapses, state: card.state, lastReview: card.lastReview}
   const next = scheduleFromReview(stored, parsed.data.rating)
   await db.transaction(async (tx) => { await tx.update(flashcards).set({...next.card, updatedAt: new Date()}).where(eq(flashcards.id, id)); await tx.insert(flashcardReviews).values({flashcardId: id, ...next.log}) })
-  return NextResponse.json({ok: true, dueAt: next.card.dueAt.toISOString()})
+  return NextResponse.json({ok: true, dueAt: next.card.dueAt.toISOString(), state: next.card.state})
 }
