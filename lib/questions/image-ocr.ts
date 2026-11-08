@@ -17,7 +17,10 @@ export function normalizeImageOcrText(text: string): string {
   if (sequence.length >= 3) {
     for (const item of sequence) lines[item.index] = item.label + ') ' + item.text
   }
-  return lines.filter((line) => !/^[✓✔vº°\s]*resolvi\s+(?:certo|errado)\s*$/i.test(line.trim())).join('\n').trim()
+  return lines
+    .map((line) => line.replace(/(?<=[.!?])\s+(?:P\s+)?reportar\s+erro\s*$/i, ''))
+    .filter((line) => !/^[✓✔vº°\s]*resolvi\s+(?:certo|errado)\s*$/i.test(line.trim()) && !/^\s*(?:P\s+)?reportar\s+erro\s*$/i.test(line))
+    .join('\n').trim()
 }
 
 type OcrWorker = {

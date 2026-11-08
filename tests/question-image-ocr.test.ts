@@ -38,6 +38,14 @@ test('não transforma letras soltas em opções sem sequência reconhecível', (
   assert.equal(normalizeImageOcrText('A pessoa estuda.\nB outra frase.'), 'A pessoa estuda.\nB outra frase.')
 })
 
+test('remove o botão Reportar Erro do OCR sem cortar texto da questão', () => {
+  const ocr = 'Pergunta?\nA Primeira alternativa.\nB Segunda alternativa.\nC Terceira alternativa. P Reportar Erro\nReportar Erro'
+  const result = parseQuestionText(normalizeImageOcrText(ocr))
+  assert.equal(result.choices[2].text, 'Terceira alternativa.')
+  assert.doesNotMatch(normalizeImageOcrText(ocr), /reportar erro/i)
+  assert.equal(normalizeImageOcrText('O servidor deve reportar erro no sistema.'), 'O servidor deve reportar erro no sistema.')
+})
+
 test('encerra o leitor de imagem mesmo se o OCR falhar', async () => {
   let terminated = false
   await assert.rejects(recognizeQuestionImage(new Blob(['test']), async () => ({recognize: async () => {throw new Error('falha')}, terminate: async () => {terminated = true}})))
