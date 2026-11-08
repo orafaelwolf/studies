@@ -1,22 +1,21 @@
-import {NextResponse} from 'next/server'
+import {NextResponse, type NextRequest} from 'next/server'
+import {getToken} from 'next-auth/jwt'
 
-import {auth} from '@/auth'
-
-export const proxy = auth((req) => {
+export async function proxy(req: NextRequest) {
   const {pathname, search} = req.nextUrl
-  const session = req.auth
+  const token = await getToken({req, secret: process.env.AUTH_SECRET, secureCookie: req.nextUrl.protocol === 'https:'})
 
   let isAuthed = false
   let isAdmin = false
   let hasDob = false
   let hasAcceptedTerms = false
 
-  if (session && session.user) {
+  if (token) {
     isAuthed = true
 
-    if (session.user.role === 'admin') isAdmin = true
-    if (session.user.hasDob) hasDob = true
-    if (session.user.hasAcceptedTerms) hasAcceptedTerms = true
+    if (token.role === 'admin') isAdmin = true
+    if (token.hasDob) hasDob = true
+    if (token.hasAcceptedTerms) hasAcceptedTerms = true
   }
 
   if (pathname.startsWith('/admin')) {
@@ -42,7 +41,7 @@ export const proxy = auth((req) => {
   }
 
   return NextResponse.next()
-})
+}
 
 export const config = {
   matcher: [
